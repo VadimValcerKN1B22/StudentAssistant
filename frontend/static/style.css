@@ -1,0 +1,371 @@
+:root {
+    --primary: #ff6600;
+    --primary-dark: #e65c00;
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --gray-light: #f5f5f5;
+    --border-color: #e0e0e0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+button,
+textarea {
+    font-family: inherit;
+}
+
+header {
+    padding: 15px 20px;
+    border-bottom: 2px solid var(--primary);
+    background: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 42px;
+    margin-right: 15px;
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+main {
+    flex: 1;
+    margin-top: 75px;
+    margin-bottom: 120px;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+    align-self: center;
+    box-sizing: border-box;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 0.25s ease;
+}
+
+.message.user-message {
+    flex-direction: row-reverse;
+}
+
+.avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.8);
+}
+
+.content {
+    background: var(--gray-light);
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 80%;
+    white-space: pre-wrap;
+}
+
+.user-message .content {
+    background: var(--primary);
+    color: white;
+}
+
+.file-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.file-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.file-card:hover {
+    text-decoration: underline;
+}
+
+.file-message {
+    padding: 3px 10px !important;
+}
+
+.source-block {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #666;
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0 !important;
+    justify-content: flex-start;
+    padding: 10px 0;
+    margin-left: 0px;
+}
+
+.loading-avatar {
+    margin-right: 14px;
+}
+
+.loading-spinner {
+    margin-right: -5px;
+}
+
+.loading-text {
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #ffd1ad;
+    border-top-color: var(--primary);
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.loading-text {
+    margin-left: 15px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    padding: 14px 20px;
+    box-sizing: border-box;
+}
+
+.input-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#clear-btn,
+#send-btn {
+    height: 40px;
+    width: 40px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    line-height: 1;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary);
+    color: #fff;
+    transition: 0.25s ease;
+}
+
+#clear-btn {
+    left: 12px;
+    font-size: 28px;
+}
+
+#send-btn {
+    right: 12px;
+}
+
+#clear-btn:hover,
+#send-btn:hover {
+    background: var(--primary-dark);
+}
+
+.input-div {
+    flex: 1;
+    min-height: 44px;
+    max-height: 140px;
+    padding-left: 70px;
+    padding-right: 70px;
+    display: flex;
+    border-radius: 20px;
+    border: 2px solid #ddd;
+    background: #fff;
+    overflow: hidden;
+    transition: border-color 0.35s ease, border-width 0.35s ease;
+}
+
+.input-div:has(#user-input:focus) {
+    border: 2px solid var(--primary);
+}
+
+#user-input {
+    flex: 1;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    outline: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+#user-input:empty::before {
+    content: attr(data-placeholder);
+    color: #999;
+}
+
+.bot-message .content {
+    background: #ededed;
+}
+
+#clear-btn span,
+#send-btn span {
+    display: inline-block;
+    position: relative; 
+    left: 1px;
+    top: 1px;
+}
+
+.loading-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.80);
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #ffd1ad;
+    border-top-color: var(--primary);
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.file-container {
+    background: #f3f3f3;
+    padding: 14px 18px;
+    border-radius: 18px;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file-label {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.file-download {
+    font-size: inherit;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.file-download:hover {
+    text-decoration: underline;
+}
+
+.file-download-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.file-emoji {
+    text-decoration: none;
+}
+
+* {
+    user-select: none !important;
+}
+
+.message .content {
+    user-select: text !important;
+}
+
+#user-input {
+    user-select: text !important;
+}
