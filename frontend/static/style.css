@@ -7,10 +7,12 @@
     --border-color: #e0e0e0;
 }
 
+/* БАЗА */
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", "Noto Color Emoji", sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
@@ -23,7 +25,9 @@ textarea {
     font-family: inherit;
 }
 
-header {
+/* ХЕДЕР */
+
+.app-header {
     padding: 15px 20px;
     border-bottom: 2px solid var(--primary);
     background: #fff;
@@ -37,11 +41,12 @@ header {
 .header-content {
     display: flex;
     align-items: center;
+    justify-content: center; /* логотип + назва по центру */
+    gap: 12px;
 }
 
 .logo {
     height: 42px;
-    margin-right: 15px;
 }
 
 .brand-name {
@@ -49,9 +54,11 @@ header {
     font-weight: 800;
 }
 
+/* ГОЛОВНИЙ КОНТЕНТ */
+
 main {
     flex: 1;
-    margin-top: 75px;
+    margin-top: 80px;
     margin-bottom: 120px;
     padding: 20px;
     overflow-y: auto;
@@ -64,9 +71,11 @@ main {
     box-sizing: border-box;
 }
 
+/* ПОВІДОМЛЕННЯ */
+
 .message {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
     animation: fadeIn 0.25s ease;
 }
@@ -101,12 +110,19 @@ main {
     line-height: 1.5;
     max-width: 80%;
     white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .user-message .content {
     background: var(--primary);
     color: white;
 }
+
+.bot-message .content {
+    background: #ededed;
+}
+
+/* БЛОК ФАЙЛІВ + ДЖЕРЕЛА */
 
 .file-block {
     display: flex;
@@ -115,25 +131,44 @@ main {
     margin-top: 6px;
 }
 
-.file-card {
+.file-message {
+    padding: 3px 10px !important;
+}
+
+.file-container {
+    background: #f3f3f3;
+    padding: 14px 18px;
+    border-radius: 18px;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file-label {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.file-download-row {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: transparent;
-    color: var(--primary);
-    font-weight: 600;
+    gap: 4px;
+}
+
+.file-emoji {
     text-decoration: none;
 }
 
-.file-card:hover {
-    text-decoration: underline;
+.file-download {
+    font-size: inherit;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.file-message {
-    padding: 3px 10px !important;
+.file-download:hover {
+    text-decoration: underline;
 }
 
 .source-block {
@@ -144,6 +179,8 @@ main {
     padding-top: 5px;
 }
 
+/* ЛОАДЕР */
+
 .hidden {
     display: none !important;
 }
@@ -151,24 +188,20 @@ main {
 #loading-indicator {
     display: flex;
     align-items: center;
-    gap: 0 !important;
+    gap: 0;
     justify-content: flex-start;
     padding: 10px 0;
-    margin-left: 0px;
 }
 
 .loading-avatar {
     margin-right: 14px;
 }
 
-.loading-spinner {
-    margin-right: -5px;
-}
-
-.loading-text {
-    font-size: 18px;
-    color: var(--primary);
-    font-weight: 600;
+.loading-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.8);
 }
 
 .loading-spinner {
@@ -178,6 +211,13 @@ main {
     border: 3px solid #ffd1ad;
     border-top-color: var(--primary);
     animation: spin 0.7s linear infinite;
+    margin-right: 10px;
+}
+
+.loading-text {
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: 600;
 }
 
 @keyframes spin {
@@ -185,16 +225,7 @@ main {
     to   { transform: rotate(360deg); }
 }
 
-.loading-text {
-    margin-left: 15px;
-    color: var(--primary);
-    font-weight: 600;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+/* ФУТЕР + ІНПУТ */
 
 footer {
     position: fixed;
@@ -217,8 +248,9 @@ footer {
 #send-btn {
     height: 40px;
     width: 40px;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 22px;
     line-height: 1;
     padding: 0;
@@ -233,9 +265,14 @@ footer {
     transition: 0.25s ease;
 }
 
+/* щоб емодзі в кнопках не “з’їжджали” */
+#clear-btn,
+#send-btn {
+    font-family: "Inter", "Noto Color Emoji", sans-serif;
+}
+
 #clear-btn {
     left: 12px;
-    font-size: 28px;
 }
 
 #send-btn {
@@ -273,8 +310,8 @@ footer {
     white-space: pre-wrap;
     overflow-wrap: break-word;
     outline: none;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     max-height: 140px;
     overflow-y: auto;
 }
@@ -284,88 +321,53 @@ footer {
     color: #999;
 }
 
-.bot-message .content {
-    background: #ededed;
+/* АНІМАЦІЯ ПОВІДОМЛЕНЬ */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-#clear-btn span,
-#send-btn span {
-    display: inline-block;
-    position: relative; 
-    left: 1px;
-    top: 1px;
-}
+/* МОЖНА КОПІЮВАТИ ТЕКСТ У ЧАТІ */
 
-.loading-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transform: scale(0.80);
-}
-
-.loading-spinner {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid #ffd1ad;
-    border-top-color: var(--primary);
-    animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.loading-text {
-    font-size: 18px;
-    color: var(--primary);
-    font-weight: 600;
-}
-
-.file-container {
-    background: #f3f3f3;
-    padding: 14px 18px;
-    border-radius: 18px;
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.file-label {
-    font-size: 16px;
-    font-weight: normal;
-}
-
-.file-download {
-    font-size: inherit;
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.file-download:hover {
-    text-decoration: underline;
-}
-
-.file-download-row {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.file-emoji {
-    text-decoration: none;
-}
-
-* {
-    user-select: none !important;
-}
-
-.message .content {
-    user-select: text !important;
-}
-
+.message .content,
 #user-input {
-    user-select: text !important;
+    user-select: text;
+}
+
+/* 📱 МОБІЛЬНА АДАПТАЦІЯ */
+
+@media (max-width: 600px) {
+
+    .brand-name {
+        font-size: 20px;
+    }
+
+    .logo {
+        height: 36px;
+    }
+
+    main {
+        padding: 12px;
+        margin-top: 76px;
+        margin-bottom: 110px;
+    }
+
+    .content {
+        max-width: 90%;
+        font-size: 15px;
+    }
+
+    .message {
+        gap: 10px;
+    }
+
+    footer {
+        padding: 10px 14px;
+    }
+
+    .input-div {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
 }
