@@ -131,14 +131,20 @@ def chat():
 
     contents = []
 
-    for uri in CACHE["gemini_files"]:
-        contents.append({"file_data": {"file_uri": uri}})
-
     for msg in history:
         role = "user" if msg["sender"] == "user" else "model"
-        contents.append({"role": role, "text": msg["text"]})
+        contents.append({
+            "role": role,
+            "parts": [msg["text"]]
+        })
 
-    contents.append({"role": "user", "text": user_message})
+    file_parts = [{"file_data": {"file_uri": uri}} for uri in CACHE["gemini_files"]]
+    user_parts = file_parts + [user_message]
+
+    contents.append({
+        "role": "user",
+        "parts": user_parts
+    })
 
     try:
         response = model.generate_content(
