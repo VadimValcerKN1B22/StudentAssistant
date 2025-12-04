@@ -148,7 +148,7 @@ def run_background_sync():
         except Exception as e:
             print("❌ Помилка синхронізації:", e)
 
-@app.before_first_request
+@app.before_serving
 def start_background_sync():
     print("🚀 Запускаю асинхронну синхронізацію файлів...")
     Thread(target=run_background_sync, daemon=True).start()
@@ -272,3 +272,4 @@ def clear_chat():
 # --- LOCAL DEV ---
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
