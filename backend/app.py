@@ -4,12 +4,11 @@ from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
-ENV_PATH = os.path.join(BASE_DIR, ".env")
 INDEXED_PATH = os.path.join(BASE_DIR, "indexed_files.json")
 
-load_dotenv(ENV_PATH)
+load_dotenv()
 
 app = Flask(
     __name__,
@@ -145,3 +144,4 @@ def clear_chat():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
