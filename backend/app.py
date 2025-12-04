@@ -1,17 +1,15 @@
 import os
 import json
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-# --- PATHS ---
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # корінь проекту
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 INDEXED_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "indexed_files.json")
 
-load_dotenv()  # читає .env з кореня проекту (ти так і хочеш)
+load_dotenv()
 
-# --- FLASK APP ---
 app = Flask(
     __name__,
     template_folder=os.path.join(FRONTEND_DIR, "templates"),
@@ -19,19 +17,14 @@ app = Flask(
     static_url_path="/static"
 )
 
-# --- GEMINI ---
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_API_KEY:
-    raise RuntimeError("ENV GEMINI_API_KEY не заданий")
-
 genai.configure(api_key=GEMINI_API_KEY)
 
-# --- CACHE ---
 CACHE = {
-    "gemini_files": [],   # список file_uri
-    "file_names": []      # відповідні імена файлів
+    "gemini_files": [],
+    "file_names": [],
+    "downloads": {}
 }
-
 
 def load_indexed_files():
     if not os.path.exists(INDEXED_PATH):
@@ -41,36 +34,27 @@ def load_indexed_files():
     with open(INDEXED_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # підтримуємо і формат-список, і старий формат-словник
     if isinstance(data, dict):
-        items = [{"name": name, "file_uri": uri} for name, uri in data.items()]
+        items = [{"name": name, "file_uri": uri, "download_url": ""} for name, uri in data.items()]
     else:
         items = data
 
     CACHE["gemini_files"] = [item["file_uri"] for item in items]
     CACHE["file_names"] = [item["name"] for item in items]
+    CACHE["downloads"] = {item["name"]: item.get("download_url", "") for item in items}
 
     print(f"Завантажено з indexed_files.json: {len(CACHE['file_names'])} файлів")
 
-
 load_indexed_files()
-
-
-# --- ROUTES ---
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
-
 @app.route("/chat", methods=["POST"])
 def chat():
-    payload = request.get_json(force=True) or {}
-    user_message = (payload.get("message") or "").strip()
-    history = payload.get("history", [])
-
-    if not user_message:
-        return jsonify({"response": "Ви нічого не написали."})
+    user_message = request.json.get("message")
+    history = request.json.get("history", [])
 
     if not CACHE["gemini_files"]:
         return jsonify({"response": "Система ще не має жодного проіндексованого файлу. Зверніться до адміністратора."})
@@ -139,45 +123,44 @@ def chat():
    чесно скажи, що в наявних pdf-файлах такої інформації немає, і нічого не вигадуй.
 """
 
+    model = genai.GenerativeModel(
+        model_name="gemini-2.5-flash",
+        system_instruction=system_prompt,
+        generation_config={"temperature": 0.0}
+    )
+
+    contents = []
+
+    for uri in CACHE["gemini_files"]:
+        contents.append({"file_data": {"file_uri": uri}})
+
+    for msg in history:
+        role = "user" if msg["sender"] == "user" else "model"
+        contents.append({"role": role, "text": msg["text"]})
+
+    contents.append({"role": "user", "text": user_message})
+
     try:
-        model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            generation_config={"temperature": 0.0},
-            system_instruction=system_prompt
-        )
-
-        contents = []
-
-        # 1. ІСТОРІЯ ЧАТУ (памʼять)
-        for msg in history:
-            text = (msg.get("text") or "").strip()
-            if not text:
-                continue
-
-            role = "user" if msg.get("sender") == "user" else "model"
-            contents.append({
-                "role": role,
-                "parts": [text]  # ВАЖЛИВО: parts, а не text
-            })
-
-        # 2. ПОТОЧНЕ ПОВІДОМЛЕННЯ + ФАЙЛИ
-        file_parts = [{"file_data": {"file_uri": uri}} for uri in CACHE["gemini_files"]]
-
-        contents.append({
-            "role": "user",
-            "parts": file_parts + [user_message]
-        })
-
         response = model.generate_content(
             contents=contents,
             request_options={"timeout": 20}
         )
-
         return jsonify({"response": response.text})
 
     except Exception as e:
-        print("Gemini error:", e)
         return jsonify({"response": f"Помилка: {str(e)}"})
+
+@app.route("/download/<path:filename>")
+def download_file(filename):
+    filename = filename.strip()
+    if filename not in CACHE["downloads"]:
+        return "Файл не знайдено у базі", 404
+
+    url = CACHE["downloads"][filename]
+    if not url:
+        return "Для цього файлу немає download_url", 500
+
+    return redirect(url)
 
 @app.route("/clear", methods=["POST"])
 def clear_chat():
