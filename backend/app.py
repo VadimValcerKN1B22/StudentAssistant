@@ -1,14 +1,14 @@
 import os
-import io
 import json
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
+from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
+INDEXED_PATH = os.path.join(BASE_DIR, "indexed_files.json")
 
-from dotenv import load_dotenv
 load_dotenv(ENV_PATH)
 
 app = Flask(
@@ -19,34 +19,28 @@ app = Flask(
 )
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-genai.configure(api_key=GEMINI_API_KEY)
+TARGET_FOLDER_NAME = os.getenv("TARGET_FOLDER_NAME", "StudentAssistantData")
 
-INDEX_PATH = os.path.join(BASE_DIR, "indexed_files.json")
+genai.configure(api_key=GEMINI_API_KEY)
 
 CACHE = {
     "gemini_files": [],
-    "file_names": [],
-    "file_bodies": {}
+    "file_names": []
 }
 
-def load_index():
-    if not os.path.exists(INDEX_PATH):
-        print("❌ indexed_files.json не знайдено!")
-        return False
+def load_indexed_files():
+    if not os.path.exists(INDEXED_PATH):
+        print("indexed_files.json не знайдено")
+        return
 
-    with open(INDEX_PATH, "r", encoding="utf-8") as f:
+    with open(INDEXED_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    CACHE["file_names"] = [f["name"] for f in data]
-    CACHE["gemini_files"] = [genai.get_file(f["file_id"]) for f in data]
+    CACHE["gemini_files"] = [item["file_uri"] for item in data]
+    CACHE["file_names"] = [item["name"] for item in data]
+    print(f"Завантажено з indexed_files.json: {len(CACHE['file_names'])} файлів")
 
-    for f in data:
-        CACHE["file_bodies"][f["name"]] = bytes.fromhex(f["hex"])
-
-    print(f"✅ Завантажено {len(CACHE['file_names'])} файлів з індексу.")
-    return True
-
-load_index()
+load_indexed_files()
 
 @app.route("/")
 def home():
@@ -58,7 +52,7 @@ def chat():
     history = request.json.get("history", [])
 
     if not CACHE["gemini_files"]:
-        return jsonify({"response": "Система завантажується. Спробуйте за 5–10 секунд."})
+        return jsonify({"response": "Система ще не має жодного проіндексованого файлу. Зверніться до адміністратора."})
 
     files_str = ", ".join(CACHE["file_names"])
 
@@ -72,37 +66,56 @@ def chat():
 
 ЗАГАЛЬНІ ПРАВИЛА
 1. Відповідаєш звичайним текстом, БЕЗ Markdown:
-   – без **жирного**,
-   – без маркерів *, -, •,
-   – без списків зі зірочками.
+   – без **жирного**, 
+   – без маркерів типу *, •, -, 
+   – без табуляцій або псевдо-списків зі зірочками.
 2. Форматуєш акуратно:
-   – нумеровані списки виглядають так:
+   – нумеровані списки мають вигляд:
      1. Перший пункт
      2. Другий пункт
      3. Третій пункт
-   – між логічними блоками — рівно один пустий рядок.
+     (один пробіл після номера і крапки, без подвійних пробілів);
+   – НЕ ставиш порожнього рядка між заголовком і першим пунктом списку;
+   – між різними логічними блоками (екзамени / курсові / інша частина) – рівно ОДИН порожній рядок;
+   – не додаєш зайві пусті рядки всередині блоку.
 
 ФІЛЬТРАЦІЯ ЗА ГРУПОЮ
-Користувач написав:
+Користувач написав такий запит:
 "{user_message}"
 
-3. Якщо явно вказано шифр групи (наприклад KN1-B22):
-   – відповідь містить ТІЛЬКИ дані для цієї групи;
-   – не додавай жодного пункту інших груп;
-   – якщо для групи нічого немає — чесно скажи про це.
+3. Якщо в запиті явно згадується шифр групи (наприклад "KN1-B22"):
+   3.1. Ти МАЄШ дати розклад ТІЛЬКИ для цієї групи.
+   3.2. Кожен пункт, який ти додаєш у відповідь (екзамен, курсова робота тощо),
+        повинен однозначно належати саме до цієї групи:
+        – або це рядок / абзац, де явно згадується ця група;
+        – або це пункт, який знаходиться всередині блоку з заголовком для цієї групи
+          (типу "Для групи KN1-B22 …").
+   3.3. Якщо пункт стосується іншої групи, іншої спеціальності або блоку з іншим заголовком –
+        ТИ НЕ МАЄШ ПРАВА його додавати у відповідь.
+   3.4. Якщо в файлах немає жодної інформації саме для запитаної групи –
+        чесно скажи, що розклад для цієї групи в наявних файлах не знайдено, і нічого не вигадуй.
 
-4. Інформацію типу "для всіх груп" можна використовувати як спільну.
+4. Якщо інформація в файлі явно позначена як "для всіх груп" або не прив’язана до конкретної групи,
+   її можна використовувати як спільну, але не додавай при цьому специфічні пункти інших груп.
 
-ФАЙЛИ
-5. Якщо користувач просить файл/файли:
-   повертаєш РІВНО такі рядки:
-   [[DOWNLOAD: назва.pdf]]
+ФАЙЛИ (DOWNLOAD)
+5. Якщо користувач просить саме файл або файли (формулювання типу:
+   "дай файл/файли", "скинь файл/файли", "надішли pdf/pdfи", "дай розклад у файлі/файлах" тощо),
+   то ти НЕ пишеш звичайну відповідь, а повертаєш РІВНО один рядок такого вигляду, для кожного файлу:
+   [[DOWNLOAD: назва_файлу.pdf]]
+   – без додаткового тексту до чи після.
+   Назва_файлу.pdf ОБОВ’ЯЗКОВО повинна точно збігатися з однією з назв із списку вище.
 
 ДЖЕРЕЛА
-6. Якщо використовуєш дані з PDF — додай блок:
-   [[SOURCE: назва.pdf | сторінка(и)]]
+6. Якщо ти використовував інформацію з pdf-файлів, додай блок джерел наприкінці відповіді.
+   Кожне джерело з нового рядка у форматі:
+   [[SOURCE: назва_файлу.pdf | сторінка(и)]]
+   Приклади сторінок: "3", "2, 5", "3–5", "2, 4–6".
+   Назви файлів у тегах SOURCE повинні ТОЧНО збігатися з назвами із списку:
+   {files_str}
 
-7. Якщо у pdf-файлах немає відповіді — скажи чесно.
+7. Якщо відповісти на питання на основі цих файлів неможливо,
+   чесно скажи, що в наявних pdf-файлах такої інформації немає, і нічого не вигадуй.
 """
 
     try:
@@ -112,33 +125,19 @@ def chat():
             system_instruction=system_prompt
         )
 
-        chat_session = [{"role": "user", "parts": CACHE["gemini_files"] + ["Start"]}]
-        chat_session.append({"role": "model", "parts": ["Ready"]})
+        parts = [user_message]
+        files_for_model = [{"file_uri": uri} for uri in CACHE["gemini_files"]]
 
-        for msg in history:
-            chat_session.append({
-                "role": "user" if msg["sender"] == "user" else "model",
-                "parts": [msg["text"]]
-            })
+        response = model.generate_content(
+            contents=parts,
+            request_options={"timeout": 20},
+            files=files_for_model
+        )
 
-        chat_session.append({"role": "user", "parts": [user_message]})
-
-        response = model.generate_content(chat_session)
         return jsonify({"response": response.text})
 
     except Exception as e:
         return jsonify({"response": f"Помилка: {str(e)}"})
-
-@app.route("/download/<filename>")
-def download_file(filename):
-    if filename in CACHE["file_bodies"]:
-        return send_file(
-            io.BytesIO(CACHE["file_bodies"][filename]),
-            mimetype="application/pdf",
-            as_attachment=True,
-            download_name=filename
-        )
-    return "Файл не знайдено", 404
 
 @app.route("/clear", methods=["POST"])
 def clear_chat():
