@@ -125,13 +125,16 @@ def chat():
             system_instruction=system_prompt
         )
 
-        parts = [user_message]
-        files_for_model = [{"file_uri": uri} for uri in CACHE["gemini_files"]]
+        contents = []
+
+        for uri in CACHE["gemini_files"]:
+            contents.append({"file_data": {"file_uri": uri}})
+
+        contents.append(user_message)
 
         response = model.generate_content(
-            contents=parts,
-            request_options={"timeout": 20},
-            files=files_for_model
+            contents=contents,
+            request_options={"timeout": 20}
         )
 
         return jsonify({"response": response.text})
@@ -145,5 +148,6 @@ def clear_chat():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
 
 
