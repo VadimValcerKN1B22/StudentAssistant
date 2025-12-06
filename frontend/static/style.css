@@ -358,14 +358,7 @@ footer {
 }
 
 body {
-    user-select: none;
-}
-
-.message .content,
-.file-container *,
-.source-block *,
-#user-input {
-    user-select: text !important;
+    user-select: auto !important;
 }
 
 .message .content {
@@ -646,6 +639,7 @@ a.sf-file:visited {
         width: 36px;
     }
 }
+
 
 
 
