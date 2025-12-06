@@ -370,3 +370,83 @@ footer {
     user-select: text !important;
 
 }
+
+main,
+.input-container,
+.message .content,
+.file-container {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    overflow-x: hidden !important;
+}
+
+.message {
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.message .content {
+    max-width: calc(100% - 70px); 
+    word-break: break-word; 
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 10px;
+        margin-top: 65px;
+        margin-bottom: 100px;
+    }
+
+    .content,
+    .file-container {
+        max-width: 90%;
+        font-size: 15px;
+        padding: 12px 14px;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    #user-input {
+        font-size: 15px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    .input-div {
+        padding-left: 55px;
+        padding-right: 55px;
+    }
+}
+
+.message.user-message,
+.message.bot-message {
+    justify-content: flex-start;
+}
+
+.content,
+.file-download {
+    word-break: break-word;
+}
+
+@media (max-width: 500px) {
+    #send-btn,
+    #clear-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+
+    .input-div {
+        padding-left: 55px;
+        padding-right: 55px;
+    }
+}
+
