@@ -402,6 +402,44 @@ a.sf-file:visited {
     user-select: text !important;
 }
 
+#scroll-down-btn {
+    position: fixed;
+    bottom: 120px; 
+    right: 20px;
+
+    height: 40px;
+    width: 40px;
+
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    z-index: 150;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+#scroll-down-btn.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#scroll-down-btn span {
+    position: relative;
+    top: 1px;
+}
+
 @media (max-width: 768px) {
 
     main {
@@ -593,6 +631,14 @@ a.sf-file:visited {
     .loading-avatar {
         width: 28px;
         height: 28px;
+    }
+
+    #scroll-down-btn {
+    height: 32px;
+    width: 32px;
+    right: 16px;
+    bottom: 110px;
+    font-size: 18px;
     }
 }
 
