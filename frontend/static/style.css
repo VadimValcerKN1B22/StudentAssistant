@@ -288,14 +288,6 @@ footer {
     background: #ededed;
 }
 
-#clear-btn span,
-#send-btn span {
-    display: inline-block;
-    position: relative; 
-    left: 1px;
-    top: 1px;
-}
-
 .loading-avatar img {
     width: 100%;
     height: 100%;
@@ -362,91 +354,66 @@ footer {
     user-select: none !important;
 }
 
-.message .content {
-    user-select: text !important;
-}
-
 #user-input {
     user-select: text !important;
 
 }
 
-main,
-.input-container,
-.message .content,
-.file-container {
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
+/* === FIX 1: Центрування emoji у кнопках === */
+#clear-btn,
+#send-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: translateY(-50%) !important;
 }
 
-body,
-html {
-    overflow-x: hidden !important;
+#clear-btn span,
+#send-btn span {
+    position: static !important;
+    transform: none !important;
 }
 
+/* === FIX 2: юзер-повідомлення не розтягуються та без пустих зон === */
+.user-message .content {
+    max-width: 75% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+/* === FIX 3: чітке вирівнювання бульбашок по одній вертикальній осі === */
 .message {
-    width: 100%;
-    flex-wrap: nowrap;
+    width: 100% !important;
 }
 
-.message .content {
-    max-width: calc(100% - 70px); 
-    word-break: break-word; 
+.user-message {
+    justify-content: flex-end !important;
 }
 
-@media (max-width: 600px) {
+.bot-message {
+    justify-content: flex-start !important;
+}
+
+/* === FIX 4: красивий вигляд на ноутбуках (не розтягується на всю сторінку) === */
+@media (min-width: 900px) {
     main {
-        padding: 10px;
-        margin-top: 65px;
-        margin-bottom: 100px;
+        max-width: 600px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     .content,
     .file-container {
-        max-width: 90%;
-        font-size: 15px;
-        padding: 12px 14px;
-    }
-
-    .avatar {
-        width: 40px;
-        height: 40px;
-    }
-
-    #user-input {
-        font-size: 15px;
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
-
-    .input-div {
-        padding-left: 55px;
-        padding-right: 55px;
+        max-width: 95% !important;
     }
 }
 
-.message.user-message,
-.message.bot-message {
-    justify-content: flex-start;
+/* === FIX 5: правильний перенос тексту === */
+.message .content {
+    word-break: break-word !important;
 }
 
-.content,
-.file-download {
-    word-break: break-word;
-}
 
-@media (max-width: 500px) {
-    #send-btn,
-    #clear-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
-    }
-
-    .input-div {
-        padding-left: 55px;
-        padding-right: 55px;
-    }
-}
 
