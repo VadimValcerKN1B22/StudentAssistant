@@ -18,22 +18,26 @@
         </div>
     </header>
 
-    <main id="chat" class="chat">
-        <div class="message bot">
+    <!-- ВАЖЛИВО: id="chat-box" (як у script.js) -->
+    <main id="chat-box" class="chat">
+        <div class="message bot-message">
             <div class="avatar">
                 <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="">
             </div>
-            <div class="bubble">
+            <div class="content">
                 👋 Привіт! Я – StudentAssistant, твій помічник у навчанні. Можеш запитати мене про будь-що, пов’язане з навчальним процесом, і я дам відповідь. Якщо потрібно – можу також надати потрібний файл.
             </div>
         </div>
     </main>
 
-    <div id="loading" class="loading hidden">
+    <!-- ВАЖЛИВО: id="loading-indicator" -->
+    <div id="loading-indicator" class="loading hidden">
         <div class="loading-avatar">
             <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="">
         </div>
+
         <div class="spinner"></div>
+
         <div class="loading-text">Аналізую документацію…</div>
     </div>
 
@@ -45,9 +49,11 @@
             </button>
 
             <div class="input-wrapper">
+                <!-- ВАЖЛИВО: id="user-input" -->
                 <div id="user-input" class="input" contenteditable="true" data-placeholder="Запитайте щось..."></div>
             </div>
 
+            <!-- ВАЖЛИВО: id="send-btn" -->
             <button id="send-btn" class="circle-btn send">
                 ➤
             </button>
@@ -56,6 +62,5 @@
     </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-
 </body>
 </html>
