@@ -65,6 +65,7 @@ main {
     background: transparent !important;
     position: relative;
     padding-bottom: 20px !important;
+    z-index: 999999
 }
 
 .message {
@@ -638,6 +639,7 @@ a.sf-file:visited {
         width: 36px;
     }
 }
+
 
 
 
