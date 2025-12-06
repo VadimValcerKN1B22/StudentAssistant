@@ -180,11 +180,6 @@ main {
     animation: spin 0.7s linear infinite;
 }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
-
 .loading-text {
     margin-left: 15px;
     color: var(--primary);
@@ -369,6 +364,24 @@ footer {
 #user-input {
     user-select: text !important;
 
+}
+
+.sf-file {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.sf-file:hover {
+    text-decoration: underline;
+}
+
+.sf-text {
+    color: inherit;
+}
+
+a.sf-file:visited {
+    color: var(--primary);
 }
 
 @media (max-width: 768px) {
@@ -565,6 +578,7 @@ footer {
         height: 28px;
     }
 }
+
 
 
 
