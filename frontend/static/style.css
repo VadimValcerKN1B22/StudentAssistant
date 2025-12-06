@@ -391,6 +391,7 @@ footer {
         padding: 12px 16px;
         border-radius: 16px;
         font-size: 15px;
+        word-break: break-word;
     }
 
     #clear-btn,
@@ -474,15 +475,23 @@ footer {
         font-size: 14px;
     }
 
+    .source-block {
+        font-size: 14px;
+        line-height: 1.45;
+        word-break: break-word;
+    }
+
     .source-block br {
-        display: none;
+        display: block;
     }
 
     .source-block div,
     .source-block a,
-    .source-block span {
+    .source-block span,
+    .source-block b {
         white-space: normal;
         overflow-wrap: anywhere;
+        display: block;
     }
 
     #clear-btn,
