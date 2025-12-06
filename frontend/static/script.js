@@ -37,6 +37,7 @@ function addMessage(text, sender, isHtml = false) {
 
     chatBox.appendChild(msgDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
+    updateScrollButton();
 }
 
 function addFilesMessage(files) {
@@ -279,4 +280,25 @@ document.addEventListener("mousedown", (e) => {
     }
 
 });
+
+const scrollDownBtn = document.getElementById("scroll-down-btn");
+
+function updateScrollButton() {
+    const nearBottom =
+        chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 140;
+
+    if (nearBottom) {
+        scrollDownBtn.classList.remove("show");
+    } else {
+        scrollDownBtn.classList.add("show");
+    }
+}
+
+chatBox.addEventListener("scroll", updateScrollButton);
+
+scrollDownBtn.addEventListener("click", () => {
+    chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+});
+
+
 
