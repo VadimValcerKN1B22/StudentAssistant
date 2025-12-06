@@ -89,24 +89,56 @@ function appendSourcesAndFilesToLastBotMessage(sources, downloads) {
     const lastContent = chatBox.querySelector('.bot-message:last-child .content');
     if (!lastContent) return;
 
-    let html = "";
+    let block = document.createElement("div");
+    block.classList.add("source-block");
 
-    html += `<div class="source-block">`;
-
-    html += `<div>📄 <b>${sources.length > 1 ? "Джерела:" : "Джерело:"}</b></div>`;
+    const titleSources = document.createElement("div");
+    titleSources.className = "sf-title";
+    titleSources.innerHTML = `📄 <b>Джерела:</b>`;
+    block.appendChild(titleSources);
 
     sources.forEach(s => {
-        html += `• ${s.cleanName}${formatPages(s.pages)}<br>`;
+        const row = document.createElement("div");
+        row.className = "sf-row";
+
+        const dot = document.createElement("span");
+        dot.className = "sf-dot";
+        dot.textContent = "•";
+
+        const text = document.createElement("span");
+        text.className = "sf-text";
+        text.textContent = `${s.cleanName}${formatPages(s.pages)}`;
+
+        row.appendChild(dot);
+        row.appendChild(text);
+        block.appendChild(row);
     });
 
-    html += `<div style="margin-top:4px;">⬇️ <b>${downloads.length > 1 ? "Файли:" : "Файл:"}</b></div>`;
+    const titleFiles = document.createElement("div");
+    titleFiles.className = "sf-title";
+    titleFiles.style.marginTop = "10px";
+    titleFiles.innerHTML = `⬇️ <b>Файли:</b>`;
+    block.appendChild(titleFiles);
+
     downloads.forEach(f => {
-        html += `• <a href="/download/${f}" class="file-download"> ${f}</a><br>`;
+        const row = document.createElement("div");
+        row.className = "sf-row";
+
+        const dot = document.createElement("span");
+        dot.className = "sf-dot";
+        dot.textContent = "•";
+
+        const link = document.createElement("a");
+        link.className = "sf-file";
+        link.href = `/download/${f}`;
+        link.textContent = f;
+
+        row.appendChild(dot);
+        row.appendChild(link);
+        block.appendChild(row);
     });
 
-    html += `</div>`;
-
-    lastContent.innerHTML += html;
+    lastContent.appendChild(block);
 }
 
 async function sendMessage() {
@@ -247,3 +279,4 @@ document.addEventListener("mousedown", (e) => {
     }
 
 });
+
