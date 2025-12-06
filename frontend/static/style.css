@@ -463,4 +463,46 @@ footer {
         padding: 12px 0;
         font-size: 14px;
     }
+
+    #clear-btn,
+    #send-btn {
+        line-height: 1;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loading-text {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .loading-spinner {
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
+    }
+
+    .loading-avatar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .file-container {
+        max-width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 14px;
+    }
+
+    .file-download-row {
+        flex-wrap: wrap;
+        word-break: break-word;
+    }
+
+    .file-download {
+        font-size: 14px;
+    }
 }
+
