@@ -634,14 +634,15 @@ a.sf-file:visited {
     }
 
     #scroll-down-btn {
-        bottom: 76хpx;
+        bottom: 70хpx;
         height: 30px;
         width: 30px;
     }
     
     #scroll-down-btn span {
-        font-size: 30px; 
+        font-size: 25px; 
         top: -10px;       
     }
 }
+
 
