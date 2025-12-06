@@ -436,6 +436,7 @@ a.sf-file:visited {
 }
 
 #scroll-down-btn span {
+    position: relative; 
     font-size: 22px;
     top: -2px;
 }
@@ -640,7 +641,9 @@ a.sf-file:visited {
     }
     
     #scroll-down-btn span {
-        font-size: 30px; 
-        top: -200px;       
+        position: relative; 
+        font-size: 26px; 
+        top: -2px;       
     }
 }
+
