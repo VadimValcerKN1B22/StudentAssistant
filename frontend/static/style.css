@@ -64,6 +64,7 @@ main {
     box-sizing: border-box;
     background: transparent !important;
     position: relative;
+    padding-bottom: 20px !important;
 }
 
 .message {
@@ -637,6 +638,7 @@ a.sf-file:visited {
         width: 36px;
     }
 }
+
 
 
 
