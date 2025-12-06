@@ -418,7 +418,7 @@ footer {
         left: 0 !important;
         top: 0 !important;
     }
-    
+
     header {
         padding: 10px 14px;
     }
@@ -444,19 +444,55 @@ footer {
         height: 32px;
     }
 
-    .content,
-    .file-container {
+    .content {
         max-width: 100%;
         font-size: 14px;
         padding: 10px 14px;
         border-radius: 14px;
+        word-break: break-word;
+    }
+
+    .file-container {
+        max-width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .file-download-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+
+    .file-download {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-size: 14px;
+    }
+
+    .source-block br {
+        display: none;
+    }
+
+    .source-block div,
+    .source-block a,
+    .source-block span {
+        white-space: normal;
+        overflow-wrap: anywhere;
     }
 
     #clear-btn,
     #send-btn {
         height: 32px;
         width: 32px;
-        font-size: 18px;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .input-div {
@@ -468,15 +504,6 @@ footer {
     #user-input {
         padding: 12px 0;
         font-size: 14px;
-    }
-
-    #clear-btn,
-    #send-btn {
-        line-height: 1;
-        font-size: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .loading-text {
@@ -494,21 +521,4 @@ footer {
         width: 28px;
         height: 28px;
     }
-
-    .file-container {
-        max-width: 100%;
-        padding: 12px 14px;
-        border-radius: 14px;
-        font-size: 14px;
-    }
-
-    .file-download-row {
-        flex-wrap: wrap;
-        word-break: break-word;
-    }
-
-    .file-download {
-        font-size: 14px;
-    }
 }
-
