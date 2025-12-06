@@ -392,6 +392,16 @@ a.sf-file:visited {
     margin-right: 6px;
 }
 
+.source-block,
+.source-block * {
+    user-select: text !important;
+}
+
+.file-container,
+.file-container * {
+    user-select: text !important;
+}
+
 @media (max-width: 768px) {
 
     main {
@@ -585,6 +595,7 @@ a.sf-file:visited {
         height: 28px;
     }
 }
+
 
 
 
