@@ -63,7 +63,7 @@ main {
     align-self: center;
     box-sizing: border-box;
     background: transparent !important;
-    padding-bottom: 180px !important;
+    padding-bottom: 40px !important;
 }
 
 .message {
@@ -407,7 +407,7 @@ a.sf-file:visited {
 #scroll-down-btn {
     position: fixed;
     left: 50%;
-    bottom: 100px; 
+    bottom: 80px;
 
     transform: translateX(-50%) scale(0.5);
 
@@ -423,9 +423,10 @@ a.sf-file:visited {
     align-items: center;
     justify-content: center;
 
-    z-index: 5000;
+    z-index: 9999;
     opacity: 0;
     pointer-events: none;
+
     transition: opacity .25s ease, transform .25s ease;
 }
 
@@ -436,8 +437,7 @@ a.sf-file:visited {
 }
 
 #scroll-down-btn span {
-    font-size: 26px !important;
-    line-height: 1;
+    font-size: 26px;
 }
 
 @media (max-width: 768px) {
@@ -640,6 +640,7 @@ a.sf-file:visited {
         bottom: 70px;
     }
 }
+
 
 
 
