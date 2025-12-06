@@ -38,15 +38,31 @@
 
     <footer>
         <div class="input-container">
-            <button id="clear-btn" title="Очистити чат"><span>🗑</span></button>
 
-            <div class="input-div"> <div id="user-input" contenteditable="true" data-placeholder="Запитайте щось..."></div></div>
+            <button id="clear-btn" title="Очистити чат">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14H6L5 6"/>
+                    <path d="M10 11v6"/>
+                    <path d="M14 11v6"/>
+                    <path d="M9 6V4h6v2"/>
+                </svg>
+            </button>
 
-            <button id="send-btn" title="Відправити"><span>➤</span></button>
+            <div class="input-div">
+                <div id="user-input" contenteditable="true" data-placeholder="Запитайте щось..."></div>
+            </div>
+
+            <button id="send-btn" title="Відправити">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+            </button>
+
         </div>
     </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
-
