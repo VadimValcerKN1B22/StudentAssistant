@@ -4,60 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentAssistant</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/logo.png') }}">
 </head>
 <body>
 
-    <header class="header">
-        <div class="header-inner">
+    <header>
+        <div class="header-content">
             <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo" class="logo">
-            <span class="brand">StudentAssistant</span>
+            <span class="brand-name">StudentAssistant</span>
         </div>
     </header>
 
-    <!-- ВАЖЛИВО: id="chat-box" (як у script.js) -->
-    <main id="chat-box" class="chat">
+    <main id="chat-box">
         <div class="message bot-message">
             <div class="avatar">
-                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}">
             </div>
-            <div class="content">
-                👋 Привіт! Я – StudentAssistant, твій помічник у навчанні. Можеш запитати мене про будь-що, пов’язане з навчальним процесом, і я дам відповідь. Якщо потрібно – можу також надати потрібний файл.
-            </div>
+            <div class="content">👋 Привіт! Я – StudentAssistant, твій помічник у навчанні. Можеш запитати мене про будь-що, пов’язане з навчальним процесом, і я дам відповідь. Якщо потрібно – можу також надати потрібний файл.</div>
         </div>
     </main>
 
-    <!-- ВАЖЛИВО: id="loading-indicator" -->
-    <div id="loading-indicator" class="loading hidden">
-        <div class="loading-avatar">
-            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="">
+    <div id="loading-indicator" class="hidden">
+        <div class="avatar loading-avatar">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}">
         </div>
 
-        <div class="spinner"></div>
+        <div class="loading-spinner"></div>
 
         <div class="loading-text">Аналізую документацію…</div>
     </div>
 
-    <footer class="footer">
-        <div class="input-area">
+    <footer>
+        <div class="input-container">
+            <button id="clear-btn" title="Очистити чат"><span>🗑</span></button>
 
-            <button id="clear-btn" class="circle-btn clear">
-                🗑
-            </button>
+            <div class="input-div"> <div id="user-input" contenteditable="true" data-placeholder="Запитайте щось..."></div></div>
 
-            <div class="input-wrapper">
-                <!-- ВАЖЛИВО: id="user-input" -->
-                <div id="user-input" class="input" contenteditable="true" data-placeholder="Запитайте щось..."></div>
-            </div>
-
-            <!-- ВАЖЛИВО: id="send-btn" -->
-            <button id="send-btn" class="circle-btn send">
-                ➤
-            </button>
-
+            <button id="send-btn" title="Відправити"><span>➤</span></button>
         </div>
     </footer>
 
