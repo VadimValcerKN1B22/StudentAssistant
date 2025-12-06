@@ -475,6 +475,8 @@ footer {
         font-size: 14px;
     }
 
+    /* === FIX ДЛЯ ТОГО ЩОБ КРАПКА + НАЗВА ФАЙЛУ БУЛИ В ОДНОМУ РЯДКУ === */
+
     .source-block {
         font-size: 13px;
         line-height: 1.45;
@@ -482,31 +484,27 @@ footer {
     }
 
     .source-block br {
-        display: block;
+        display: none;
     }
 
-    .source-block div {
-        margin-top: 4px;
+    /* Кожен рядок джерела — flex-рядок */
+    .source-block .line {
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 6px;
+        flex-wrap: nowrap;
+        margin: 2px 0;
         white-space: nowrap;
     }
 
-    .source-block b {
-        font-size: 13px;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        white-space: nowrap;
+    .source-block .dot {
+        flex-shrink: 0;
     }
 
-    .source-block span,
-    .source-block a {
-        font-size: 13px;
-        display: inline;
+    .source-block .text {
         white-space: normal;
         overflow-wrap: anywhere;
+        font-size: 13px;
     }
 
     #clear-btn,
@@ -546,3 +544,4 @@ footer {
         height: 28px;
     }
 }
+
