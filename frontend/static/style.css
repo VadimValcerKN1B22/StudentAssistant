@@ -476,7 +476,7 @@ footer {
     }
 
     .source-block {
-        font-size: 14px;
+        font-size: 13px;
         line-height: 1.45;
         word-break: break-word;
     }
@@ -487,11 +487,23 @@ footer {
 
     .source-block div {
         margin-top: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
     }
 
-    .source-block b,
-    .source-block a,
-    .source-block span {
+    .source-block b {
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+    }
+
+    .source-block span,
+    .source-block a {
+        font-size: 13px;
         display: inline;
         white-space: normal;
         overflow-wrap: anywhere;
