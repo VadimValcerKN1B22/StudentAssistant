@@ -52,8 +52,9 @@ header {
 main {
     flex: 1;
     margin-top: 75px;
-    margin-bottom: 120px;
+    margin-bottom: 0 !important;
     padding: 20px;
+    padding-bottom: 80px !important;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -63,7 +64,8 @@ main {
     align-self: center;
     box-sizing: border-box;
     background: transparent !important;
-    padding-bottom: 40px !important;
+    position: relative;
+    z-index: 1;
 }
 
 .message {
@@ -407,8 +409,7 @@ a.sf-file:visited {
 #scroll-down-btn {
     position: fixed;
     left: 50%;
-    bottom: 80px;
-
+    bottom: 105px; 
     transform: translateX(-50%) scale(0.5);
 
     height: 44px;
@@ -426,7 +427,6 @@ a.sf-file:visited {
     z-index: 9999;
     opacity: 0;
     pointer-events: none;
-
     transition: opacity .25s ease, transform .25s ease;
 }
 
@@ -634,12 +634,12 @@ a.sf-file:visited {
     }
 
     #scroll-down-btn {
-        height: 32px;
-        width: 32px;
-        font-size: 18px;
-        bottom: 70px;
+        bottom: 85px;
+        height: 36px;
+        width: 36px;
     }
 }
+
 
 
 
