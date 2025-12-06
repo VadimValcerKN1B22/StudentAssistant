@@ -404,17 +404,18 @@ a.sf-file:visited {
 }
 
 #scroll-down-btn {
-    position: absolute;
+    position: fixed;
     left: 50%;
-    bottom: 100%;          
-    margin-bottom: 10px;   
+    bottom: 100px; 
 
     transform: translateX(-50%) scale(0.5);
+
     height: 40px;
     width: 40px;
 
     background: var(--primary);
     color: #fff;
+
     border-radius: 50%;
     border: none;
 
@@ -422,11 +423,11 @@ a.sf-file:visited {
     align-items: center;
     justify-content: center;
 
-    z-index: 999;
+    z-index: 9999;
     opacity: 0;
     pointer-events: none;
 
-    transition: opacity .25s, transform .25s;
+    transition: opacity .25s ease, transform .25s ease;
 }
 
 #scroll-down-btn.show {
@@ -639,6 +640,7 @@ a.sf-file:visited {
         bottom: 70px;
     }
 }
+
 
 
 
