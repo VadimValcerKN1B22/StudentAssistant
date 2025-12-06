@@ -413,6 +413,12 @@ footer {
 
 @media (max-width: 480px) {
 
+    #clear-btn span,
+    #send-btn span {
+        left: 0 !important;
+        top: 0 !important;
+    }
+    
     header {
         padding: 10px 14px;
     }
