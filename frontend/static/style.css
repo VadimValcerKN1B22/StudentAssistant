@@ -7,6 +7,13 @@
     --border-color: #e0e0e0;
 }
 
+/* Глобально краще так */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -15,8 +22,15 @@ body {
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
+
+/* Прибери тотальний user-select: none – це псує UX на мобілках */
+/*
+* {
+    user-select: none !important;
+}
+*/
 
 button,
 textarea {
@@ -24,7 +38,7 @@ textarea {
 }
 
 header {
-    padding: 15px 20px;
+    padding: 12px 16px;
     border-bottom: 2px solid var(--primary);
     background: #fff;
     position: fixed;
@@ -40,24 +54,27 @@ header {
 }
 
 .logo {
-    height: 42px;
-    margin-right: 15px;
+    height: 40px;
+    margin-right: 12px;
 }
 
 .brand-name {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 800;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 main {
     flex: 1;
-    margin-top: 75px;
-    margin-bottom: 120px;
-    padding: 20px;
+    margin-top: 70px;      /* відступ під header */
+    margin-bottom: 110px;  /* відступ під footer */
+    padding: 16px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     max-width: 900px;
     width: 100%;
     align-self: center;
@@ -66,8 +83,8 @@ main {
 
 .message {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 10px;
     animation: fadeIn 0.25s ease;
 }
 
@@ -76,8 +93,8 @@ main {
 }
 
 .avatar {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -95,17 +112,22 @@ main {
 
 .content {
     background: var(--gray-light);
-    padding: 14px 18px;
-    border-radius: 18px;
-    font-size: 16px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 15px;
     line-height: 1.5;
     max-width: 80%;
     white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
 .user-message .content {
     background: var(--primary);
     color: white;
+}
+
+.bot-message .content {
+    background: #ededed;
 }
 
 .file-block {
@@ -148,6 +170,8 @@ main {
     display: none !important;
 }
 
+/* LOADING */
+
 #loading-indicator {
     display: flex;
     align-items: center;
@@ -161,14 +185,11 @@ main {
     margin-right: 14px;
 }
 
-.loading-spinner {
-    margin-right: -5px;
-}
-
-.loading-text {
-    font-size: 18px;
-    color: var(--primary);
-    font-weight: 600;
+.loading-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.80);
 }
 
 .loading-spinner {
@@ -178,17 +199,18 @@ main {
     border: 3px solid #ffd1ad;
     border-top-color: var(--primary);
     animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+    margin-right: 4px;
 }
 
 .loading-text {
-    margin-left: 15px;
+    font-size: 16px;
     color: var(--primary);
     font-weight: 600;
+    margin-left: 12px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 @keyframes fadeIn {
@@ -196,12 +218,14 @@ main {
     to   { opacity: 1; transform: translateY(0); }
 }
 
+/* FOOTER / INPUT */
+
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     background: #fff;
-    padding: 14px 20px;
+    padding: 10px 16px;
     box-sizing: border-box;
 }
 
@@ -219,7 +243,7 @@ footer {
     width: 40px;
     display: grid;
     place-items: center;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1;
     padding: 0;
     border: none;
@@ -234,12 +258,12 @@ footer {
 }
 
 #clear-btn {
-    left: 12px;
-    font-size: 28px;
+    left: 10px;
+    font-size: 24px;
 }
 
 #send-btn {
-    right: 12px;
+    right: 10px;
 }
 
 #clear-btn:hover,
@@ -250,9 +274,9 @@ footer {
 .input-div {
     flex: 1;
     min-height: 44px;
-    max-height: 140px;
-    padding-left: 70px;
-    padding-right: 70px;
+    max-height: 160px;
+    padding-left: 60px;
+    padding-right: 60px;
     display: flex;
     border-radius: 20px;
     border: 2px solid #ddd;
@@ -268,14 +292,14 @@ footer {
 #user-input {
     flex: 1;
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 20px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
     outline: none;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    max-height: 140px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    max-height: 160px;
     overflow-y: auto;
 }
 
@@ -284,48 +308,20 @@ footer {
     color: #999;
 }
 
-.bot-message .content {
-    background: #ededed;
-}
-
 #clear-btn span,
 #send-btn span {
     display: inline-block;
-    position: relative; 
+    position: relative;
     left: 1px;
     top: 1px;
 }
 
-.loading-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transform: scale(0.80);
-}
-
-.loading-spinner {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid #ffd1ad;
-    border-top-color: var(--primary);
-    animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.loading-text {
-    font-size: 18px;
-    color: var(--primary);
-    font-weight: 600;
-}
+/* Файли */
 
 .file-container {
     background: #f3f3f3;
-    padding: 14px 18px;
-    border-radius: 18px;
+    padding: 12px 16px;
+    border-radius: 16px;
     max-width: 80%;
     display: flex;
     flex-direction: column;
@@ -333,7 +329,7 @@ footer {
 }
 
 .file-label {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: normal;
 }
 
@@ -358,16 +354,121 @@ footer {
     text-decoration: none;
 }
 
-* {
-    user-select: none !important;
-}
-
-.message .content {
-    user-select: text !important;
-}
-
+/* Дозволяємо виділяти текст */
+.message .content,
 #user-input {
     user-select: text !important;
-
 }
 
+/* ============== АДАПТИВНІСТЬ ============== */
+
+/* Планшети та менші (<= 768px) */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 12px;
+    }
+
+    .logo {
+        height: 36px;
+        margin-right: 10px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+        max-width: 70%;
+    }
+
+    main {
+        margin-top: 64px;
+        margin-bottom: 96px;
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+    .content,
+    .file-container {
+        max-width: 100%;
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    footer {
+        padding: 8px 12px;
+    }
+
+    #clear-btn,
+    #send-btn {
+        height: 36px;
+        width: 36px;
+    }
+
+    .input-div {
+        padding-left: 52px;
+        padding-right: 52px;
+    }
+
+    #user-input {
+        font-size: 14px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+}
+
+/* Телефони (<= 480px) */
+@media (max-width: 480px) {
+    .header-content {
+        gap: 8px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+        max-width: 65%;
+    }
+
+    main {
+        margin-top: 60px;
+        margin-bottom: 90px;
+        padding: 10px;
+    }
+
+    .message {
+        gap: 8px;
+    }
+
+    .avatar {
+        width: 34px;
+        height: 34px;
+    }
+
+    .content,
+    .file-container {
+        font-size: 13px;
+        border-radius: 14px;
+    }
+
+    #clear-btn,
+    #send-btn {
+        height: 34px;
+        width: 34px;
+        font-size: 18px;
+    }
+
+    .input-div {
+        min-height: 40px;
+        padding-left: 48px;
+        padding-right: 48px;
+        border-radius: 18px;
+    }
+
+    #user-input {
+        font-size: 13px;
+        line-height: 18px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
