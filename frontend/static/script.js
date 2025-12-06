@@ -63,7 +63,7 @@ function addFilesMessage(files) {
         <div class="file-download-row">
             <span class="file-emoji">➡️</span>
             <a href="/download/${f}" class="file-download">
-                Скачати ${f}
+                 ${f}
             </a>
         </div>
     `;
@@ -101,7 +101,7 @@ function appendSourcesAndFilesToLastBotMessage(sources, downloads) {
 
     html += `<div style="margin-top:4px;">⬇️ <b>${downloads.length > 1 ? "Файли:" : "Файл:"}</b></div>`;
     downloads.forEach(f => {
-        html += `• <a href="/download/${f}" class="file-download">Скачати ${f}</a><br>`;
+        html += `• <a href="/download/${f}" class="file-download"> ${f}</a><br>`;
     });
 
     html += `</div>`;
@@ -245,4 +245,5 @@ document.addEventListener("mousedown", (e) => {
     if (!isChatText && !isInput) {
         window.getSelection()?.removeAllRanges();
     }
+
 });
