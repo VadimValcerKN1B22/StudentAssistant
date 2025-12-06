@@ -54,7 +54,6 @@ main {
     margin-top: 75px;
     margin-bottom: 0 !important;
     padding: 20px;
-    padding-bottom: 80px !important;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -65,7 +64,6 @@ main {
     box-sizing: border-box;
     background: transparent !important;
     position: relative;
-    z-index: 1;
 }
 
 .message {
