@@ -412,6 +412,7 @@ footer {
     }
 }
 
+
 @media (max-width: 480px) {
 
     #clear-btn span,
@@ -475,44 +476,57 @@ footer {
         font-size: 14px;
     }
 
-    /* ▼ Джерела і файли — фікс для вирівнювання пунктів */
     .source-block {
-        font-size: 12.5px;
-        line-height: 1.35;
-    }
-
-    .source-block br {
-        display: none;
-    }
-
-    .source-block {
+        font-size: 13px;
+        margin-top: 10px;
+        border-top: 1px solid #ddd;
+        padding-top: 8px;
         display: flex;
         flex-direction: column;
         gap: 4px;
     }
 
-    .source-block span,
-    .source-block a {
-        display: inline-flex;
+    .sf-title {
+        font-size: 13px;
+        margin-bottom: 2px;
+        display: flex;
         align-items: center;
         gap: 6px;
+    }
+
+    .sf-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
         white-space: normal;
+    }
+
+    .sf-dot {
+        font-size: 13px;
+        color: #555;
+        flex-shrink: 0;
+        line-height: 1.3;
+    }
+
+    .sf-text {
+        font-size: 13px;
+        line-height: 1.3;
         overflow-wrap: anywhere;
     }
 
-    .source-block span::before,
-    .source-block a::before {
-        content: "•";
-        display: inline-block;
-        margin-right: 4px;
-        flex-shrink: 0;
+    .sf-file {
+        font-size: 13px;
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
     }
 
-    .source-block > div:first-child::before,
-    .source-block > div:nth-child(2)::before {
-        content: "";
-        margin: 0;
+    .sf-file:hover {
+        text-decoration: underline;
     }
+
 
     #clear-btn,
     #send-btn {
@@ -551,6 +565,7 @@ footer {
         height: 28px;
     }
 }
+
 
 
 
