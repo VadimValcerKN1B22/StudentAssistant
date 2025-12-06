@@ -63,6 +63,7 @@ main {
     align-self: center;
     box-sizing: border-box;
     background: transparent !important;
+    padding-bottom: 180px !important;
 }
 
 .message {
@@ -406,7 +407,7 @@ a.sf-file:visited {
 #scroll-down-btn {
     position: fixed;
     left: 50%;
-    bottom: 50px; 
+    bottom: 100px; 
 
     transform: translateX(-50%) scale(0.5);
 
@@ -639,6 +640,7 @@ a.sf-file:visited {
         bottom: 70px;
     }
 }
+
 
 
 
