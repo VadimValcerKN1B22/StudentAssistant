@@ -384,6 +384,14 @@ a.sf-file:visited {
     color: var(--primary);
 }
 
+.sf-row {
+    gap: 8px;
+}
+
+.sf-dot {
+    margin-right: 6px;
+}
+
 @media (max-width: 768px) {
 
     main {
@@ -424,7 +432,6 @@ a.sf-file:visited {
         font-size: 15px;
     }
 }
-
 
 @media (max-width: 480px) {
 
@@ -504,13 +511,13 @@ a.sf-file:visited {
         margin-bottom: 2px;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 4px !important;
     }
 
     .sf-row {
         display: flex;
         align-items: flex-start;
-        gap: 6px;
+        gap: 6px !important;
         white-space: normal;
     }
 
@@ -518,17 +525,18 @@ a.sf-file:visited {
         font-size: 13px;
         color: #555;
         flex-shrink: 0;
-        line-height: 1.3;
+        line-height: 1.2;
+        margin-right: 4px !important;
     }
 
     .sf-text {
-        font-size: 13px;
+        font-size: 13px !important;
         line-height: 1.3;
         overflow-wrap: anywhere;
     }
 
     .sf-file {
-        font-size: 13px;
+        font-size: 13px !important;
         color: var(--primary);
         font-weight: 600;
         text-decoration: none;
@@ -539,7 +547,6 @@ a.sf-file:visited {
     .sf-file:hover {
         text-decoration: underline;
     }
-
 
     #clear-btn,
     #send-btn {
@@ -578,6 +585,8 @@ a.sf-file:visited {
         height: 28px;
     }
 }
+
+
 
 
 
