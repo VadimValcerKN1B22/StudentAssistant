@@ -476,7 +476,7 @@ a.sf-file:visited {
     }
 
     #user-input {
-        padding: 16px 0;
+        padding: 16px;
         font-size: 15px;
     }
 }
@@ -640,10 +640,7 @@ a.sf-file:visited {
     }
     
     #scroll-down-btn span {
-        font-size: 25px; 
-        top: -20px;       
+        font-size: 30px; 
+        top: -200px;       
     }
 }
-
-
-
