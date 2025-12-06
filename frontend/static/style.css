@@ -485,13 +485,16 @@ footer {
         display: block;
     }
 
-    .source-block div,
+    .source-block div {
+        margin-top: 4px;
+    }
+
+    .source-block b,
     .source-block a,
-    .source-block span,
-    .source-block b {
+    .source-block span {
+        display: inline;
         white-space: normal;
         overflow-wrap: anywhere;
-        display: block;
     }
 
     #clear-btn,
