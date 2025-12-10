@@ -305,11 +305,22 @@ scrollDownBtn.addEventListener("click", () => {
 
 function updateScrollBtnPosition() {
     const height = inputDiv.offsetHeight;
-    scrollBtn.style.bottom = (height + 25) + "px"; 
+
+    let offset = 25; 
+
+    if (window.innerWidth < 480) {
+        offset = 10; 
+    } else if (window.innerWidth < 768) {
+        offset = 18; 
+    }
+
+    scrollBtn.style.bottom = (height + offset) + "px";
 }
 
+window.addEventListener("resize", updateScrollBtnPosition);
 input.addEventListener("input", updateScrollBtnPosition);
 updateScrollBtnPosition();
+
 
 
 
