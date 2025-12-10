@@ -310,9 +310,9 @@ function updateScrollBtnPosition() {
     let offset = 20; 
 
     if (window.innerWidth < 480) {
-        offset = 10;       
-    } else if (window.innerWidth < 768) {
         offset = 15;       
+    } else if (window.innerWidth < 768) {
+        offset = 20;       
     }
     
     scrollBtn.style.bottom = (footerHeight + offset) + "px";
@@ -322,6 +322,7 @@ window.addEventListener("resize", updateScrollBtnPosition);
 userInput.addEventListener("input", updateScrollBtnPosition); 
 chatBox.addEventListener("scroll", updateScrollBtnPosition);
 updateScrollBtnPosition();
+
 
 
 
