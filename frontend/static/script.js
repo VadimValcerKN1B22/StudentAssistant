@@ -9,6 +9,8 @@ const inputDiv = document.querySelector(".input-div");
 
 let history = [];
 
+const baseBottom = 100;
+
 function addMessage(text, sender, isHtml = false) {
     const msgDiv = document.createElement('div');
     msgDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
@@ -305,10 +307,11 @@ scrollDownBtn.addEventListener("click", () => {
 
 function updateScrollBtnPosition() {
     const height = inputDiv.offsetHeight;
-    scrollBtn.style.bottom = (height + 50) + "px";
+    scrollBtn.style.bottom = (baseBottom + height - 44) + "px";
 }
 
 input.addEventListener("input", updateScrollBtnPosition);
 updateScrollBtnPosition();
+
 
 
