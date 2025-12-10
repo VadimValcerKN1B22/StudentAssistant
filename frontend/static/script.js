@@ -3,6 +3,9 @@ const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 const clearBtn = document.getElementById('clear-btn');
 const loadingIndicator = document.getElementById('loading-indicator');
+const scrollBtn = document.getElementById("scroll-down-btn");
+const input = document.getElementById("user-input");
+const inputDiv = document.querySelector(".input-div");
 
 let history = [];
 
@@ -300,5 +303,12 @@ scrollDownBtn.addEventListener("click", () => {
     chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
 });
 
+function updateScrollBtnPosition() {
+    const height = inputDiv.offsetHeight;
+    scrollBtn.style.bottom = (height + 50) + "px";
+}
+
+input.addEventListener("input", updateScrollBtnPosition);
+updateScrollBtnPosition();
 
 
