@@ -305,11 +305,12 @@ scrollDownBtn.addEventListener("click", () => {
 
 function updateScrollBtnPosition() {
     const height = inputDiv.offsetHeight;
-    scrollBtn.style.bottom = (height + 30) + "px"; 
+    scrollBtn.style.bottom = (height + 25) + "px"; 
 }
 
 input.addEventListener("input", updateScrollBtnPosition);
 updateScrollBtnPosition();
+
 
 
 
