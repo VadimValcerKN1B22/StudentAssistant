@@ -1,726 +1,726 @@
-root {
-    --primary #ff6600;
-    --primary-dark #e65c00;
-    --bg-color #ffffff;
-    --text-color #1a1a1a;
-    --gray-light #f5f5f5;
-    --border-color #e0e0e0;
+:root {
+    --primary: #ff6600;
+    --primary-dark: #e65c00;
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --gray-light: #f5f5f5;
+    --border-color: #e0e0e0;
 }
 
 body, header, footer, button, #scroll-down-btn {
-    user-select none !important;
+    user-select: none !important;
 }
 
 .message .content,
 .file-container,
-.file-container ,
+.file-container *,
 .source-block,
-.source-block ,
+.source-block *,
 #user-input {
-    user-select text !important;
+    user-select: text !important;
 }
 
 .avatar,
-.avatar  {
-    user-select none !important;
+.avatar * {
+    user-select: none !important;
 }
 
 body {
-    margin 0;
-    padding 0;
-    font-family 'Inter', sans-serif;
-    background-color var(--bg-color);
-    color var(--text-color);
-    display flex;
-    flex-direction column;
-    height 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 button,
 textarea {
-    font-family inherit;
+    font-family: inherit;
 }
 
 header {
-    padding 15px 20px;
-    border-bottom 2px solid var(--primary);
-    background #fff;
-    box-sizing border-box;
-    flex 0 0 auto;  
+    padding: 15px 20px;
+    border-bottom: 2px solid var(--primary);
+    background: #fff;
+    box-sizing: border-box;
+    flex: 0 0 auto;  
 }
 
 .header-content {
-    display flex;
-    align-items center;
+    display: flex;
+    align-items: center;
 }
 
 .logo {
-    height 42px;
-    margin-right 15px;
+    height: 42px;
+    margin-right: 15px;
 }
 
 .brand-name {
-    font-size 24px;
-    font-weight 800;
+    font-size: 24px;
+    font-weight: 800;
 }
 
 main {
-    flex 1 1 auto;              
-    margin-top 0;              
+    flex: 1 1 auto;              
+    margin-top: 0;              
 
-    padding-left 20px;
-    padding-right 20px;
-    padding-top 20px;
-    padding-bottom 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 
-    overflow-y auto;
-    display flex;
-    flex-direction column;
-    gap 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-    max-width 900px;
-    width 100%;
-    align-self center;
-    box-sizing border-box;
-    background transparent !important;
+    max-width: 900px;
+    width: 100%;
+    align-self: center;
+    box-sizing: border-box;
+    background: transparent !important;
 }
 
 .message {
-    display flex;
-    align-items center;
-    gap 12px;
-    animation fadeIn 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 0.25s ease;
 }
 
 .message.user-message {
-    flex-direction row-reverse;
+    flex-direction: row-reverse;
 }
 
 .avatar {
-    width 46px;
-    height 46px;
-    border-radius 50%;
-    overflow hidden;
-    flex-shrink 0;
-    display flex;
-    align-items center;
-    justify-content center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .avatar img {
-    width 100%;
-    height 100%;
-    object-fit contain;
-    transform scale(0.8);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.8);
 }
 
 .content {
-    background var(--gray-light);
-    padding 14px 18px;
-    border-radius 18px;
-    font-size 16px;
-    line-height 1.5;
-    max-width 80%;
-    white-space pre-wrap;
+    background: var(--gray-light);
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 80%;
+    white-space: pre-wrap;
 }
 
 .user-message .content {
-    background var(--primary);
-    color white;
+    background: var(--primary);
+    color: white;
 }
 
 .file-block {
-    display flex;
-    flex-direction column;
-    gap 4px;
-    margin-top 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
 }
 
 .file-card {
-    display inline-flex;
-    align-items center;
-    gap 6px;
-    padding 0;
-    margin 0;
-    border none;
-    background transparent;
-    color var(--primary);
-    font-weight 600;
-    text-decoration none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
 }
 
-.file-cardhover {
-    text-decoration underline;
+.file-card:hover {
+    text-decoration: underline;
 }
 
 .file-message {
-    padding 3px 10px !important;
+    padding: 3px 10px !important;
 }
 
 .source-block {
-    margin-top 10px;
-    font-size 13px;
-    color #666;
-    border-top 1px solid #ddd;
-    padding-top 5px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #666;
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
 }
 
 .hidden {
-    display none !important;
+    display: none !important;
 }
 
 #loading-indicator {
-    display flex;
-    align-items center;
-    gap 0 !important;
-    justify-content flex-start;
-    padding 10px 0;
-    margin-left 0px;
+    display: flex;
+    align-items: center;
+    gap: 0 !important;
+    justify-content: flex-start;
+    padding: 10px 0;
+    margin-left: 0px;
 }
 
 .loading-avatar {
-    margin-right 14px;
+    margin-right: 14px;
 }
 
 .loading-spinner {
-    margin-right -5px;
+    margin-right: -5px;
 }
 
 .loading-text {
-    font-size 18px;
-    color var(--primary);
-    font-weight 600;
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: 600;
 }
 
 .loading-spinner {
-    width 20px;
-    height 20px;
-    border-radius 50%;
-    border 3px solid #ffd1ad;
-    border-top-color var(--primary);
-    animation spin 0.7s linear infinite;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #ffd1ad;
+    border-top-color: var(--primary);
+    animation: spin 0.7s linear infinite;
 }
 
 .loading-text {
-    margin-left 15px;
-    color var(--primary);
-    font-weight 600;
+    margin-left: 15px;
+    color: var(--primary);
+    font-weight: 600;
 }
 
 @keyframes fadeIn {
-    from { opacity 0; transform translateY(5px); }
-    to   { opacity 1; transform translateY(0); }
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 footer {
-    background #fff;
-    padding 14px 20px;
-    box-sizing border-box;
-    flex 0 0 auto;  
+    background: #fff;
+    padding: 14px 20px;
+    box-sizing: border-box;
+    flex: 0 0 auto;  
 }
 
 .input-container {
-    max-width 900px;
-    margin 0 auto;
-    display flex;
-    align-items center;
-    position relative;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 #clear-btn,
 #send-btn {
-    height 40px;
-    width 40px;
-    display grid;
-    place-items center;
-    font-size 22px;
-    line-height 1;
-    padding 0;
-    border none;
-    border-radius 50%;
-    cursor pointer;
-    position absolute;
-    top 50%;
-    transform translateY(-50%);
-    background var(--primary);
-    color #fff;
-    transition 0.25s ease;
+    height: 40px;
+    width: 40px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    line-height: 1;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary);
+    color: #fff;
+    transition: 0.25s ease;
 }
 
 #clear-btn {
-    left 12px;
-    font-size 28px;
+    left: 12px;
+    font-size: 28px;
 }
 
 #send-btn {
-    right 12px;
+    right: 12px;
 }
 
-#clear-btnhover,
-#send-btnhover {
-    background var(--primary-dark);
+#clear-btn:hover,
+#send-btn:hover {
+    background: var(--primary-dark);
 }
 
 .input-div {
-    flex 1;
-    min-height 44px;
-    max-height 140px;
-    padding-left 70px;
-    padding-right 70px;
-    display flex;
-    border-radius 20px;
-    border 2px solid #ddd;
-    background #fff;
-    overflow visible !important;
-    transition border-color 0.35s ease, border-width 0.35s ease;
+    flex: 1;
+    min-height: 44px;
+    max-height: 140px;
+    padding-left: 70px;
+    padding-right: 70px;
+    display: flex;
+    border-radius: 20px;
+    border: 2px solid #ddd;
+    background: #fff;
+    overflow: visible !important;
+    transition: border-color 0.35s ease, border-width 0.35s ease;
 }
 
-.input-divhas(#user-inputfocus) {
-    border 2px solid var(--primary);
+.input-div:has(#user-input:focus) {
+    border: 2px solid var(--primary);
 }
 
 #user-input {
-    flex 1;
-    width 100%;
-    font-size 16px;
-    line-height 20px;
-    white-space pre-wrap;
-    overflow-wrap break-word;
-    outline none;
-    padding-top 20px;
-    padding-bottom 20px;
-    max-height 140px;
-    overflow-y auto;
+    flex: 1;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    outline: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    max-height: 140px;
+    overflow-y: auto;
 }
 
-#user-inputemptybefore {
-    content attr(data-placeholder);
-    color #999;
-    cursor text;
-    pointer-events none;
+#user-input:empty::before {
+    content: attr(data-placeholder);
+    color: #999;
+    cursor: text;
+    pointer-events: none;
 }
 
 .bot-message .content {
-    background #ededed;
+    background: #ededed;
 }
 
 #clear-btn span,
 #send-btn span {
-    display inline-block;
-    position relative; 
-    left 1px;
-    top 1px;
+    display: inline-block;
+    position: relative; 
+    left: 1px;
+    top: 1px;
 }
 
 .loading-avatar img {
-    width 100%;
-    height 100%;
-    object-fit contain;
-    transform scale(0.80);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.80);
 }
 
 .loading-spinner {
-    width 20px;
-    height 20px;
-    border-radius 50%;
-    border 3px solid #ffd1ad;
-    border-top-color var(--primary);
-    animation spin 0.7s linear infinite;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #ffd1ad;
+    border-top-color: var(--primary);
+    animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
-    to { transform rotate(360deg); }
+    to { transform: rotate(360deg); }
 }
 
 .loading-text {
-    font-size 18px;
-    color var(--primary);
-    font-weight 600;
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: 600;
 }
 
 .file-container {
-    background #f3f3f3;
-    padding 14px 18px;
-    border-radius 18px;
-    max-width 80%;
-    display flex;
-    flex-direction column;
-    gap 8px;
+    background: #f3f3f3;
+    padding: 14px 18px;
+    border-radius: 18px;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .file-label {
-    font-size 16px;
-    font-weight normal;
+    font-size: 16px;
+    font-weight: normal;
 }
 
 .file-download {
-    font-size inherit;
-    color var(--primary);
-    text-decoration none;
-    font-weight 600;
+    font-size: inherit;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.file-downloadhover {
-    text-decoration underline;
+.file-download:hover {
+    text-decoration: underline;
 }
 
 .file-download-row {
-    display inline-flex;
-    align-items center;
-    gap 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .file-emoji {
-    text-decoration none;
+    text-decoration: none;
 }
 
 .sf-file {
-    color var(--primary);
-    font-weight 600;
-    text-decoration none;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
 }
 
-.sf-filehover {
-    text-decoration underline;
+.sf-file:hover {
+    text-decoration: underline;
 }
 
 .sf-text {
-    color inherit;
+    color: inherit;
 }
 
-a.sf-filevisited {
-    color var(--primary);
+a.sf-file:visited {
+    color: var(--primary);
 }
 
 .sf-row {
-    gap 8px;
+    gap: 8px;
 }
 
 .sf-dot {
-    margin-right 6px;
+    margin-right: 6px;
 }
 
 .source-block,
-.source-block  {
-    user-select text !important;
+.source-block * {
+    user-select: text !important;
 }
 
 .file-container,
-.file-container  {
-    user-select text !important;
+.file-container * {
+    user-select: text !important;
 }
 
 #scroll-down-btn {
-    position fixed;
-    left 50%;
-    bottom 80px;
-    transform translateX(-50%) scale(0.5);
+    position: fixed;
+    left: 50%;
+    bottom: 80px;
+    transform: translateX(-50%) scale(0.5);
 
-    height 30px;
-    width 30px;
+    height: 30px;
+    width: 30px;
 
-    background var(--primary);
-    color #fff;
-    border-radius 50%;
-    border none;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    border: none;
 
-    display flex;
-    align-items center;
-    justify-content center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    z-index 9999;
-    opacity 0;
-    pointer-events none;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
 
-    cursor pointer;               
-    transition 0.25s ease;        
+    cursor: pointer;               
+    transition: 0.25s ease;        
 }
 
-#scroll-down-btnhover {
-    background var(--primary-dark);
+#scroll-down-btn:hover {
+    background: var(--primary-dark);
 }
 
 #scroll-down-btn.show {
-    opacity 1;
-    transform translateX(-50%) scale(1);
-    pointer-events auto;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    pointer-events: auto;
 }
 
 #scroll-down-btn span {
-    position relative;
-    font-size 22px;
+    position: relative;
+    font-size: 22px;
 }
 
 #clear-btn,
 #send-btn,
 #scroll-down-btn {
-    transition transform 0.15s ease, box-shadow 0.15s ease;
-    transform translateY(-50%) scale(1); 
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transform: translateY(-50%) scale(1); 
 }
 
-#clear-btnactive,
-#send-btnactive,
-#scroll-down-btnactive {
-    transform translateY(-50%) scale(0.80); 
-    box-shadow 0 2px 8px rgba(0, 0, 0, 0.25);
+#clear-btn:active,
+#send-btn:active,
+#scroll-down-btn:active {
+    transform: translateY(-50%) scale(0.80); 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 #scroll-down-btn {
-    transform translateX(-50%) scale(0.5); 
+    transform: translateX(-50%) scale(0.5); 
 }
 
-#scroll-down-btnactive {
-    transform translateX(-50%) scale(0.80);
+#scroll-down-btn:active {
+    transform: translateX(-50%) scale(0.80);
 }
 
 #clear-btn,
 #send-btn,
 #scroll-down-btn {
-    box-shadow
+    box-shadow:
         0 6px 12px rgba(0, 0, 0, 0.25),
         0 10px 25px rgba(0, 0, 0, 0.20),
         0 2px 4px rgba(255, 102, 0, 0.25) !important;
 }
 
-#clear-btnhover,
-#send-btnhover,
-#scroll-down-btnhover {
-    box-shadow
+#clear-btn:hover,
+#send-btn:hover,
+#scroll-down-btn:hover {
+    box-shadow:
         0 8px 16px rgba(0, 0, 0, 0.30),
         0 14px 28px rgba(0, 0, 0, 0.25),
         0 2px 6px rgba(255, 102, 0, 0.30) !important;
 }
 
 .input-div {
-    box-shadow
+    box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.12),
         0 10px 20px rgba(0, 0, 0, 0.10) !important;
 }
 
-.input-divhas(#user-inputfocus) {
-    box-shadow
+.input-div:has(#user-input:focus) {
+    box-shadow:
         0 6px 12px rgba(255, 102, 0, 0.25),
         0 12px 22px rgba(255, 102, 0, 0.18) !important;
 }
 
 .bot-message .content {
-    box-shadow
+    box-shadow:
         0 6px 14px rgba(0, 0, 0, 0.18),
         0 12px 26px rgba(0, 0, 0, 0.13) !important;
 }
 
 .user-message .content {
-    box-shadow
+    box-shadow:
         0 6px 14px rgba(255, 102, 0, 0.35),
         0 12px 26px rgba(255, 102, 0, 0.28) !important;
 }
 
 .file-container,
 .source-block {
-    box-shadow
+    box-shadow:
         0 6px 16px rgba(0, 0, 0, 0.16),
         0 12px 28px rgba(0, 0, 0, 0.12) !important;
 }
 
-@media (max-width 768px) {
+@media (max-width: 768px) {
 
     main {
-        margin-top 70px;
-        padding 15px;
-        gap 15px;
+        margin-top: 70px;
+        padding: 15px;
+        gap: 15px;
     }
 
     .avatar {
-        width 38px;
-        height 38px;
+        width: 38px;
+        height: 38px;
     }
 
     .content,
     .file-container {
-        max-width 100%;
-        padding 12px 16px;
-        border-radius 16px;
-        font-size 15px;
-        word-break break-word;
+        max-width: 100%;
+        padding: 12px 16px;
+        border-radius: 16px;
+        font-size: 15px;
+        word-break: break-word;
     }
 
     #clear-btn,
     #send-btn {
-        height 36px;
-        width 36px;
-        font-size 20px;
+        height: 36px;
+        width: 36px;
+        font-size: 20px;
     }
 
     .input-div {
-        padding-left 60px;
-        padding-right 60px;
+        padding-left: 60px;
+        padding-right: 60px;
     }
 
     #user-input {
-        padding 16px;
-        font-size 15px;
+        padding: 16px;
+        font-size: 15px;
     }
 }
 
-@media (max-width 480px) {
+@media (max-width: 480px) {
 
     #clear-btn span,
     #send-btn span {
-        left 0 !important;
-        top 0 !important;
+        left: 0 !important;
+        top: 0 !important;
     }
 
     header {
-        padding 10px 14px;
+        padding: 10px 14px;
     }
 
     .logo {
-        height 32px;
-        margin-right 10px;
+        height: 32px;
+        margin-right: 10px;
     }
 
     .brand-name {
-        font-size 20px;
+        font-size: 20px;
     }
 
     main {
-        padding 10px;
-        margin-top 0;
-        gap 12px;
+        padding: 10px;
+        margin-top: 0;
+        gap: 12px;
     }
 
     .avatar {
-        width 32px;
-        height 32px;
+        width: 32px;
+        height: 32px;
     }
 
     .content {
-        max-width 100%;
-        font-size 14px;
-        padding 10px 14px;
-        border-radius 14px;
-        word-break break-word;
+        max-width: 100%;
+        font-size: 14px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        word-break: break-word;
     }
 
     .file-container {
-        max-width 100%;
-        padding 12px 14px;
-        border-radius 14px;
-        font-size 14px;
-        word-break break-word;
+        max-width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 14px;
+        word-break: break-word;
     }
 
     .file-download-row {
-        display flex;
-        align-items center;
-        gap 6px;
-        flex-wrap nowrap;
-        white-space nowrap;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
     }
 
     .file-download {
-        white-space normal;
-        overflow-wrap anywhere;
-        font-size 14px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-size: 14px;
     }
 
     .source-block {
-        font-size 13px;
-        margin-top 10px;
-        border-top 1px solid #ddd;
-        padding-top 8px;
-        display flex;
-        flex-direction column;
-        gap 4px;
+        font-size: 13px;
+        margin-top: 10px;
+        border-top: 1px solid #ddd;
+        padding-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
     }
 
     .sf-title {
-        font-size 13px;
-        margin-bottom 2px;
-        display flex;
-        align-items center;
-        gap 2px !important;
+        font-size: 13px;
+        margin-bottom: 2px;
+        display: flex;
+        align-items: center;
+        gap: 2px !important;
     }
 
     .sf-row {
-        display flex;
-        align-items flex-start;
-        gap 6px !important;
-        white-space normal;
+        display: flex;
+        align-items: flex-start;
+        gap: 6px !important;
+        white-space: normal;
     }
 
     .sf-dot {
-        font-size 13px;
-        color #555;
-        flex-shrink 0;
-        line-height 1.2;
-        margin-right 2px !important;
+        font-size: 13px;
+        color: #555;
+        flex-shrink: 0;
+        line-height: 1.2;
+        margin-right: 2px !important;
     }
 
     .sf-text {
-        font-size 13px !important;
-        line-height 1.3;
-        overflow-wrap anywhere;
+        font-size: 13px !important;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
     }
 
     .sf-file {
-        font-size 13px !important;
-        color var(--primary);
-        font-weight 600;
-        text-decoration none;
-        line-height 1.3;
-        overflow-wrap anywhere;
+        font-size: 13px !important;
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
     }
 
-    .sf-filehover {
-        text-decoration underline;
+    .sf-file:hover {
+        text-decoration: underline;
     }
 
     #clear-btn,
     #send-btn {
-        height 32px;
-        width 32px;
-        font-size 16px;
-        display flex;
-        justify-content center;
-        align-items center;
+        height: 32px;
+        width: 32px;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .input-div {
-        padding-left 48px;
-        padding-right 48px;
-        border-radius 16px;
+        padding-left: 48px;
+        padding-right: 48px;
+        border-radius: 16px;
     }
 
     #user-input {
-        padding 12px 0;
-        font-size 14px;
+        padding: 12px 0;
+        font-size: 14px;
     }
 
     .loading-text {
-        font-size 14px;
-        margin-left 10px;
+        font-size: 14px;
+        margin-left: 10px;
     }
 
     .loading-spinner {
-        width 16px;
-        height 16px;
-        border-width 2px;
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
     }
 
     .loading-avatar {
-        width 28px;
-        height 28px;
+        width: 28px;
+        height: 28px;
     }
 
     #scroll-down-btn {
-        height 30px;
-        width 30px;
+        height: 30px;
+        width: 30px;
     }
     
     #scroll-down-btn span {
-        position relative; 
-        font-size 27px; 
-        top -2px;       
+        position: relative; 
+        font-size: 27px; 
+        top: -2px;       
     }
 }
