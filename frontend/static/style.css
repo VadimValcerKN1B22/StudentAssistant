@@ -411,7 +411,6 @@ a.sf-file:visited {
 }
 
 #clear-btn.disabled {
-#send-btn.disabled {
     background: #bfbfbf !important;
     cursor: not-allowed !important;
     opacity: 0.8;
@@ -719,4 +718,3 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
-
