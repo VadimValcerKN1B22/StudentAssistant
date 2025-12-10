@@ -455,12 +455,13 @@ a.sf-file:visited {
 #send-btn,
 #scroll-down-btn {
     transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transform: translateY(-50%) scale(1); 
 }
 
 #clear-btn:active,
 #send-btn:active,
 #scroll-down-btn:active {
-    transform: scale(0.90);
+    transform: translateY(-50%) scale(0.90); 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
@@ -715,3 +716,4 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
