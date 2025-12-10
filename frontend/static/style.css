@@ -418,6 +418,16 @@ a.sf-file:visited {
     transform: translateY(-50%) scale(1) !important;
 }
 
+#clear-btn.disabled:hover,
+#clear-btn.disabled:active {
+    background: #bfbfbf !important;
+    transform: translateY(-50%) scale(1) !important;
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.25),
+        0 10px 25px rgba(0, 0, 0, 0.20),
+        0 2px 4px rgba(255, 102, 0, 0.25) !important;
+}
+
 #scroll-down-btn {
     position: fixed;
     left: 50%;
@@ -732,4 +742,3 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
-
