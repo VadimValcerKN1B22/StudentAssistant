@@ -155,6 +155,7 @@ async function sendMessage() {
     userInput.style.height = 'auto';
 
     loadingIndicator.classList.remove('hidden');
+    updateSendButtonState();
     chatBox.appendChild(loadingIndicator);
     chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -215,6 +216,7 @@ cleanText = cleanText.replace(
     .trim();
 
         loadingIndicator.classList.add('hidden');
+        updateSendButtonState();
 
         if (cleanText.length > 0) {
             addMessage(cleanText, 'bot', true);
@@ -244,7 +246,7 @@ cleanText = cleanText.replace(
 sendBtn.addEventListener('click', sendMessage);
 
 document.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey && !sendBtn.classList.contains("disabled")) {
         e.preventDefault();
         sendMessage();
     }
@@ -344,4 +346,14 @@ const observer = new MutationObserver(updateClearButtonState);
 observer.observe(document.querySelector("main"), { childList: true });
 updateClearButtonState();
 
+function updateSendButtonState() {
+    const textEmpty = userInput.innerText.trim().length === 0;
+    const isLoading = !loadingIndicator.classList.contains("hidden");
 
+    sendBtn.classList.toggle("disabled", textEmpty || isLoading);
+}
+
+userInput.addEventListener("input", updateSendButtonState);
+const observerSend = new MutationObserver(updateSendButtonState);
+observerSend.observe(loadingIndicator, { attributes: true });
+updateSendButtonState();
