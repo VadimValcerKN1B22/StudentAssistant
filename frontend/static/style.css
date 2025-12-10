@@ -296,6 +296,8 @@ footer {
 #user-input:empty::before {
     content: attr(data-placeholder);
     color: #999;
+    cursor: text;
+    pointer-events: none;
 }
 
 .bot-message .content {
@@ -700,6 +702,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
