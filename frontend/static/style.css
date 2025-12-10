@@ -406,9 +406,9 @@ a.sf-file:visited {
 }
 
 #scroll-down-btn {
-    position: fixed;              
+    position: fixed;
     left: 50%;
-    bottom: 80px;                 
+    bottom: 80px;
     transform: translateX(-50%) scale(0.5);
 
     height: 30px;
@@ -426,7 +426,13 @@ a.sf-file:visited {
     z-index: 9999;
     opacity: 0;
     pointer-events: none;
-    transition: opacity .25s ease, transform .25s ease;
+
+    cursor: pointer;               
+    transition: 0.25s ease;        
+}
+
+#scroll-down-btn:hover {
+    background: var(--primary-dark);
 }
 
 #scroll-down-btn.show {
@@ -644,6 +650,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
