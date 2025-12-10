@@ -410,6 +410,14 @@ a.sf-file:visited {
     user-select: text !important;
 }
 
+#clear-btn.disabled {
+    background: #ccc !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    box-shadow: none !important;
+    transform: translateY(-50%) scale(1) !important;
+}
+
 #scroll-down-btn {
     position: fixed;
     left: 50%;
@@ -724,3 +732,4 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
