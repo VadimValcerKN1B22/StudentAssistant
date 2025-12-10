@@ -70,8 +70,9 @@ header {
 main {
     flex: 1;
     margin-top: 75px;
-    margin-bottom: 0 !important;
-    padding: 20px;
+    padding-bottom: calc(80px + 20px); 
+    padding-left: 20px;
+    padding-right: 20px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -81,8 +82,6 @@ main {
     align-self: center;
     box-sizing: border-box;
     background: transparent !important;
-    position: relative;
-    padding-bottom: 100px !important;
 }
 
 .message {
@@ -374,19 +373,6 @@ footer {
     text-decoration: none;
 }
 
-body {
-    user-select: auto !important;
-}
-
-.message .content {
-    user-select: text !important;
-}
-
-#user-input {
-    user-select: text !important;
-
-}
-
 .sf-file {
     color: var(--primary);
     font-weight: 600;
@@ -468,7 +454,6 @@ a.sf-file:visited {
 
     main {
         margin-top: 70px;
-        margin-bottom: 105px;
         padding: 15px;
         gap: 15px;
     }
@@ -529,8 +514,8 @@ a.sf-file:visited {
     main {
         padding: 10px;
         margin-top: 60px;
-        margin-bottom: 95px;
         gap: 12px;
+        padding-bottom: calc(95px + 20px);
     }
 
     .avatar {
@@ -668,6 +653,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
