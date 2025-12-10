@@ -325,12 +325,11 @@ updateScrollBtnPosition();
 
 function updateClearButtonState() {
     const clearBtn = document.getElementById("clear-btn");
-    const messages = document.querySelectorAll(".message:not(.system-message)");
-    if (messages.length === 0) {
-        clearBtn.classList.add("disabled");
-    } else {
-        clearBtn.classList.remove("disabled");
-    }
+
+    const messages = [...document.querySelectorAll(".message")]
+        .filter(m => !m.classList.contains("system-message"));
+
+    clearBtn.classList.toggle("disabled", messages.length === 0);
 }
 
 document.getElementById("clear-btn").addEventListener("click", () => {
@@ -343,5 +342,6 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 
 const observer = new MutationObserver(updateClearButtonState);
 observer.observe(document.querySelector("main"), { childList: true });
+
 
 
