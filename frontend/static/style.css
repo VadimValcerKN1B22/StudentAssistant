@@ -452,34 +452,34 @@ a.sf-file:visited {
 #clear-btn,
 #send-btn,
 #scroll-down-btn {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28) !important;
 }
 
 #clear-btn:hover,
 #send-btn:hover,
 #scroll-down-btn:hover {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38) !important;
 }
 
 .input-div {
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18) !important;
 }
 
 .input-div:has(#user-input:focus) {
-    box-shadow: 0 4px 16px rgba(255, 102, 0, 0.25); 
+    box-shadow: 0 6px 22px rgba(255, 102, 0, 0.45) !important;
 }
 
 .bot-message .content {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18) !important;
 }
 
 .user-message .content {
-    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.35);
+    box-shadow: 0 6px 16px rgba(255, 102, 0, 0.45) !important;
 }
 
 .file-container,
 .source-block {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16) !important;
 }
 
 @media (max-width: 768px) {
@@ -684,6 +684,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
