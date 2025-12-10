@@ -105,10 +105,12 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent !important;
+    padding: 0;
     box-shadow:
         0 6px 14px rgba(0, 0, 0, 0.18),
         0 12px 26px rgba(0, 0, 0, 0.13) !important;
-}
+    }
 
 .avatar img {
     width: 100%;
@@ -468,6 +470,14 @@ a.sf-file:visited {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
+#scroll-down-btn {
+    transform: translateX(-50%) scale(0.5); 
+}
+
+#scroll-down-btn:active {
+    transform: translateX(-50%) scale(0.80);
+}
+
 #clear-btn,
 #send-btn,
 #scroll-down-btn {
@@ -719,6 +729,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
