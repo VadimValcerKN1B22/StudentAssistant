@@ -469,8 +469,8 @@ button:active {
 #clear-btn:active,
 #send-btn:active,
 #scroll-down-btn:active {
-    transform: scale(0.82);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+    transform: none;
 }
 
 #clear-btn,
@@ -724,6 +724,7 @@ button:active {
         top: -2px;       
     }
 }
+
 
 
 
