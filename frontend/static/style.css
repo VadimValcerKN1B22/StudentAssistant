@@ -68,15 +68,18 @@ header {
 }
 
 main {
-    flex: 1;
+    flex: none !important;
+    height: calc(100vh - 75px - 68px);
     margin-top: 75px;
-    padding-bottom: calc(80px + 20px); 
+
     padding-left: 20px;
     padding-right: 20px;
+
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     max-width: 900px;
     width: 100%;
     align-self: center;
@@ -515,7 +518,7 @@ a.sf-file:visited {
         padding: 10px;
         margin-top: 60px;
         gap: 12px;
-        padding-bottom: calc(95px + 20px);
+        height: calc(100vh - 60px - 95px);
     }
 
     .avatar {
@@ -653,6 +656,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
