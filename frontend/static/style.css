@@ -406,9 +406,10 @@ a.sf-file:visited {
 }
 
 #scroll-down-btn {
-    position: fixed;
+    position: absolute;
     left: 50%;
-    bottom: 117px; 
+    bottom: 100%;
+    margin-bottom: 10px;
     transform: translateX(-50%) scale(0.5);
 
     height: 30px;
@@ -645,6 +646,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
