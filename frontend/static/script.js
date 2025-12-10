@@ -323,12 +323,22 @@ userInput.addEventListener("input", updateScrollBtnPosition);
 chatBox.addEventListener("scroll", updateScrollBtnPosition);
 updateScrollBtnPosition();
 
+function updateClearButtonState() {
+    const clearBtn = document.getElementById("clear-btn");
+    const messages = document.querySelectorAll(".message");
+    if (messages.length === 0) {
+        clearBtn.classList.add("disabled");
+    } else {
+        clearBtn.classList.remove("disabled");
+    }
+}
 
+document.getElementById("clear-btn").addEventListener("click", () => {
+    const main = document.querySelector("main");
+    main.innerHTML = "";
+    updateClearButtonState();
+});
 
-
-
-
-
-
-
+const observer = new MutationObserver(updateClearButtonState);
+observer.observe(document.querySelector("main"), { childList: true });
 
