@@ -637,10 +637,10 @@ a.sf-file:visited {
     }
 
     main {
-        padding: 10px;
-        margin-top: 0;
+        padding: 12px;
+        margin: 0 !important;
         gap: 12px;
-        margin-bottom: 120px;
+        max-width: 100%;
     }
 
     .avatar {
@@ -654,6 +654,7 @@ a.sf-file:visited {
         padding: 10px 14px;
         border-radius: 14px;
         word-break: break-word;
+        white-space: pre-wrap;
     }
 
     .file-container {
@@ -662,6 +663,7 @@ a.sf-file:visited {
         border-radius: 14px;
         font-size: 14px;
         word-break: break-word;
+        white-space: pre-wrap;
     }
 
     .file-download-row {
@@ -748,6 +750,7 @@ a.sf-file:visited {
         white-space: pre-wrap !important;
         overflow-wrap: break-word !important;
         word-break: break-word !important;
+        max-height: 140px;
     }
 
     .loading-text {
