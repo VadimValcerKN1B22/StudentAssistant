@@ -6,6 +6,7 @@ const loadingIndicator = document.getElementById('loading-indicator');
 const scrollBtn = document.getElementById("scroll-down-btn");
 const input = document.getElementById("user-input");
 const inputDiv = document.querySelector(".input-div");
+const footer = document.querySelector('footer');
 
 let history = [];
 
@@ -304,22 +305,25 @@ scrollDownBtn.addEventListener("click", () => {
 });
 
 function updateScrollBtnPosition() {
-    const height = inputDiv.offsetHeight;
+    const footerHeight = footer.offsetHeight;  
 
-    let offset = 25; 
+    let offset = 20; 
 
     if (window.innerWidth < 480) {
-        offset = 10; 
+        offset = 10;       
     } else if (window.innerWidth < 768) {
-        offset = 18; 
+        offset = 15;       
     }
-
-    scrollBtn.style.bottom = (height + offset) + "px";
+    
+    scrollBtn.style.bottom = (footerHeight + offset) + "px";
 }
 
 window.addEventListener("resize", updateScrollBtnPosition);
-input.addEventListener("input", updateScrollBtnPosition);
+userInput.addEventListener("input", updateScrollBtnPosition); 
+chatBox.addEventListener("scroll", updateScrollBtnPosition);
 updateScrollBtnPosition();
+
+
 
 
 
