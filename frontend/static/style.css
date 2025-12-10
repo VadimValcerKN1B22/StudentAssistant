@@ -641,6 +641,7 @@ a.sf-file:visited {
         margin: 0 !important;
         gap: 12px;
         max-width: 100%;
+        margin-bottom: 120px !important;
     }
 
     .avatar {
@@ -785,3 +786,4 @@ a.sf-file:visited {
         box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
     }
 }
+
