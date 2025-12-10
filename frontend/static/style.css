@@ -449,6 +449,39 @@ a.sf-file:visited {
     font-size: 22px;
 }
 
+#clear-btn,
+#send-btn,
+#scroll-down-btn {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#clear-btn:hover,
+#send-btn:hover,
+#scroll-down-btn:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.input-div {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.input-div:has(#user-input:focus) {
+    box-shadow: 0 4px 16px rgba(255, 102, 0, 0.25); 
+}
+
+.bot-message .content {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+}
+
+.user-message .content {
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.35);
+}
+
+.file-container,
+.source-block {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+}
+
 @media (max-width: 768px) {
 
     main {
@@ -651,6 +684,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
