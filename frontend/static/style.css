@@ -428,6 +428,23 @@ a.sf-file:visited {
         0 2px 4px rgba(255, 102, 0, 0.25) !important;
 }
 
+#send-btn.disabled {
+    background: #bfbfbf !important;
+    cursor: not-allowed !important;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+#send-btn.disabled:hover,
+#send-btn.disabled:active {
+    background: #bfbfbf !important;
+    transform: translateY(-50%) scale(1) !important;
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.25),
+        0 10px 25px rgba(0, 0, 0, 0.20),
+        0 2px 4px rgba(255, 102, 0, 0.25) !important;
+}
+
 #scroll-down-btn {
     position: fixed;
     left: 50%;
