@@ -105,13 +105,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #e6e6e6 70%, #d0d0d0 100%);
-    padding: 6px;
-    border-radius: 50%;
-    box-shadow:
-        0 6px 14px rgba(0,0,0,0.25),
-        0 12px 28px rgba(0,0,0,0.18);
-    }
+}
 
 .avatar img {
     width: 100%;
@@ -730,3 +724,4 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
