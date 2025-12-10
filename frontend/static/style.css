@@ -451,6 +451,28 @@ a.sf-file:visited {
     font-size: 22px;
 }
 
+button {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:active {
+    transform: scale(0.88);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+#clear-btn,
+#send-btn,
+#scroll-down-btn {
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+}
+
+#clear-btn:active,
+#send-btn:active,
+#scroll-down-btn:active {
+    transform: scale(0.82);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
 #clear-btn,
 #send-btn,
 #scroll-down-btn {
@@ -702,6 +724,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
