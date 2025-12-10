@@ -7,6 +7,24 @@
     --border-color: #e0e0e0;
 }
 
+body, header, footer, button, #scroll-down-btn {
+    user-select: none !important;
+}
+
+.message .content,
+.file-container,
+.file-container *,
+.source-block,
+.source-block *,
+#user-input {
+    user-select: text !important;
+}
+
+.avatar,
+.avatar * {
+    user-select: none !important;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -650,6 +668,7 @@ a.sf-file:visited {
         top: -2px;       
     }
 }
+
 
 
 
