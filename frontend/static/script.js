@@ -342,6 +342,6 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 
 const observer = new MutationObserver(updateClearButtonState);
 observer.observe(document.querySelector("main"), { childList: true });
-
+updateClearButtonState();
 
 
