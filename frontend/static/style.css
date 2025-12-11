@@ -547,6 +547,14 @@ a.sf-file:visited {
     box-shadow: none !important;
 }
 
+.file-container {
+    background: #ededed;
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.18),
+        0 12px 26px rgba(0, 0, 0, 0.13) !important;
+    border-radius: 18px;
+}
+
 @media (max-width: 768px) {
 
     main {
