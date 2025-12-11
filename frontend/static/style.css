@@ -410,38 +410,29 @@ a.sf-file:visited {
     user-select: text !important;
 }
 
-#clear-btn.disabled {
-    background: #bfbfbf !important;
-    cursor: not-allowed !important;
-    opacity: 0.8;
-    pointer-events: none;
-}
-
-#clear-btn.disabled:hover,
-#clear-btn.disabled:active {
-    background: #bfbfbf !important;
-    transform: translateY(-50%) scale(1) !important;
-    box-shadow:
-        0 6px 12px rgba(0, 0, 0, 0.25),
-        0 10px 25px rgba(0, 0, 0, 0.20),
-        0 2px 4px rgba(255, 102, 0, 0.25) !important;
-}
-
+#clear-btn.disabled,
 #send-btn.disabled {
     background: #bfbfbf !important;
     cursor: not-allowed !important;
-    opacity: 0.8;
+    opacity: 0.85;
     pointer-events: none;
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.20),
+        0 10px 22px rgba(0, 0, 0, 0.18),
+        0 2px 4px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-50%) scale(1) !important;
 }
 
+#clear-btn.disabled:hover,
+#clear-btn.disabled:active,
 #send-btn.disabled:hover,
 #send-btn.disabled:active {
     background: #bfbfbf !important;
     transform: translateY(-50%) scale(1) !important;
     box-shadow:
-        0 6px 12px rgba(0, 0, 0, 0.25),
-        0 10px 25px rgba(0, 0, 0, 0.20),
-        0 2px 4px rgba(255, 102, 0, 0.25) !important;
+        0 6px 12px rgba(0, 0, 0, 0.20),
+        0 10px 22px rgba(0, 0, 0, 0.18),
+        0 2px 4px rgba(0, 0, 0, 0.15) !important;
 }
 
 #scroll-down-btn {
@@ -786,8 +777,3 @@ a.sf-file:visited {
         box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
     }
 }
-
-
-
-
-
