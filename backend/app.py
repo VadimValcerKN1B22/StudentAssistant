@@ -124,7 +124,7 @@ def chat():
 """
 
     model = genai.GenerativeModel(
-        model_name="gemini-2.0-flash",
+        model_name="gemini-2.5-flash",
         system_instruction=system_prompt,
         generation_config={"temperature": 0.0}
     )
@@ -174,5 +174,6 @@ def clear_chat():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
 
 
