@@ -1,8 +1,7 @@
 <div align="center">
 
-<img src="frontend/static/assets/logo.png" alt="StudentAssistant Logo" width="60"/>
 
-# StudentAssistant
+<img src="frontend/static/assets/logo.png" alt="StudentAssistant Logo" width="60"/> # StudentAssistant
 
 ### Веб-асистент для студентів: відповідає на питання з документів кафедри (PDF) через Groq LLM
 
