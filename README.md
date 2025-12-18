@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="frontend/static/assets/logo.png" alt="StudentAssistant Logo" width="60" />
+<img src="frontend/static/assets/logo.png" alt="StudentAssistant Logo" width="60"/>
 
 # StudentAssistant
 
