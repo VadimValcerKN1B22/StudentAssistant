@@ -1,787 +1,212 @@
-:root {
-    --primary: #ff6600;
-    --primary-dark: #e65c00;
-    --bg-color: #ffffff;
-    --text-color: #1a1a1a;
-    --gray-light: #f5f5f5;
-    --border-color: #e0e0e0;
-}
-
-body, header, footer, button, #scroll-down-btn {
-    user-select: none !important;
-}
-
-.message .content,
-.file-container,
-.file-container *,
-.source-block,
-.source-block *,
-#user-input {
-    user-select: text !important;
-}
-
-.avatar,
-.avatar * {
-    user-select: none !important;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-button,
-textarea {
-    font-family: inherit;
-}
-
-header {
-    padding: 15px 20px;
-    border-bottom: 2px solid var(--primary);
-    background: #fff;
-    box-sizing: border-box;
-    flex: 0 0 auto;  
-}
-
-.header-content {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    height: 42px;
-    margin-right: 15px;
-}
-
-.brand-name {
-    font-size: 24px;
-    font-weight: 800;
-}
-
-main {
-    flex: 1 1 auto;              
-    margin-top: 0;              
-
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    max-width: 900px;
-    width: 100%;
-    align-self: center;
-    box-sizing: border-box;
-    background: transparent !important;
-}
-
-.message {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    animation: fadeIn 0.25s ease;
-}
-
-.message.user-message {
-    flex-direction: row-reverse;
-}
-
-.avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transform: scale(0.8);
-}
-
-.content {
-    background: var(--gray-light);
-    padding: 14px 18px;
-    border-radius: 18px;
-    font-size: 16px;
-    line-height: 1.5;
-    max-width: 80%;
-    white-space: pre-wrap;
-}
-
-.user-message .content {
-    background: var(--primary);
-    color: white;
-}
-
-.file-block {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: 6px;
-}
-
-.file-card {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: transparent;
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.file-card:hover {
-    text-decoration: underline;
-}
-
-.file-message {
-    padding: 3px 10px !important;
-}
-
-.source-block {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #666;
-    border-top: 1px solid #ddd;
-    padding-top: 5px;
-}
-
-.hidden {
-    display: none !important;
-}
-
-#loading-indicator {
-    display: flex;
-    align-items: center;
-    gap: 0 !important;
-    justify-content: flex-start;
-    padding: 10px 0;
-    margin-left: 0px;
-}
-
-.loading-avatar {
-    margin-right: 14px;
-}
-
-.loading-spinner {
-    margin-right: -5px;
-}
-
-.loading-text {
-    font-size: 18px;
-    color: var(--primary);
-    font-weight: 600;
-}
-
-.loading-spinner {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid #ffd1ad;
-    border-top-color: var(--primary);
-    animation: spin 0.7s linear infinite;
-}
-
-.loading-text {
-    margin-left: 15px;
-    color: var(--primary);
-    font-weight: 600;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-footer {
-    background: #fff;
-    padding: 14px 20px;
-    box-sizing: border-box;
-    flex: 0 0 auto;  
-}
-
-.input-container {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-#clear-btn,
-#send-btn {
-    height: 40px;
-    width: 40px;
-    display: grid;
-    place-items: center;
-    font-size: 22px;
-    line-height: 1;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--primary);
-    color: #fff;
-    transition: 0.25s ease;
-}
-
-#clear-btn {
-    left: 12px;
-    font-size: 28px;
-}
-
-#send-btn {
-    right: 12px;
-}
-
-#clear-btn:hover,
-#send-btn:hover {
-    background: var(--primary-dark);
-}
-
-.input-div {
-    flex: 1;
-    min-height: 44px;
-    max-height: 140px;
-    padding-left: 70px;
-    padding-right: 70px;
-    display: flex;
-    border-radius: 20px;
-    border: 2px solid #ddd;
-    background: #fff;
-    overflow: visible !important;
-    transition: border-color 0.35s ease, border-width 0.35s ease;
-}
-
-.input-div:has(#user-input:focus) {
-    border: 2px solid var(--primary);
-}
-
-#user-input {
-    flex: 1;
-    width: 100%;
-    font-size: 16px;
-    line-height: 20px;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    outline: none;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    max-height: 140px;
-    overflow-y: auto;
-}
-
-#user-input:empty::before {
-    content: attr(data-placeholder);
-    color: #999;
-    cursor: text;
-    pointer-events: none;
-}
-
-.bot-message .content {
-    background: #ededed;
-}
-
-#clear-btn span,
-#send-btn span {
-    display: inline-block;
-    position: relative; 
-    left: 1px;
-    top: 1px;
-}
-
-.loading-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transform: scale(0.80);
-}
-
-.loading-spinner {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid #ffd1ad;
-    border-top-color: var(--primary);
-    animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.loading-text {
-    font-size: 18px;
-    color: var(--primary);
-    font-weight: 600;
-}
-
-.file-container {
-    background: #f3f3f3;
-    padding: 14px 18px;
-    border-radius: 18px;
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.file-label {
-    font-size: 16px;
-    font-weight: normal;
-}
-
-.file-download {
-    font-size: inherit;
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.file-download:hover {
-    text-decoration: underline;
-}
-
-.file-download-row {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.file-emoji {
-    text-decoration: none;
-}
-
-.sf-file {
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.sf-file:hover {
-    text-decoration: underline;
-}
-
-.sf-text {
-    color: inherit;
-}
-
-a.sf-file:visited {
-    color: var(--primary);
-}
-
-.sf-row {
-    gap: 8px;
-}
-
-.sf-dot {
-    margin-right: 6px;
-}
-
-#clear-btn.disabled,
-#send-btn.disabled {
-    background: #bfbfbf !important;
-    cursor: not-allowed !important;
-    opacity: 0.8;
-    pointer-events: none;
-
-    box-shadow:
-        0 6px 12px rgba(0,0,0,0.25),
-        0 10px 25px rgba(0,0,0,0.20),
-        0 2px 4px rgba(0,0,0,0.10) !important; 
-}
-
-#clear-btn.disabled:hover,
-#clear-btn.disabled:active,
-#send-btn.disabled:hover,
-#send-btn.disabled:active {
-    background: #bfbfbf !important;
-    transform: translateY(-50%) scale(1) !important;
-    box-shadow:
-        0 6px 12px rgba(0,0,0,0.25),
-        0 10px 25px rgba(0,0,0,0.20),
-        0 2px 4px rgba(0,0,0,0.10) !important;
-}
-
-#scroll-down-btn {
-    position: fixed;
-    left: 50%;
-    bottom: 80px;
-    transform: translateX(-50%) scale(0.5);
-
-    height: 30px;
-    width: 30px;
-
-    background: var(--primary);
-    color: #fff;
-    border-radius: 50%;
-    border: none;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-
-    cursor: pointer;               
-    transition: 0.25s ease;        
-}
-
-#scroll-down-btn:hover {
-    background: var(--primary-dark);
-}
-
-#scroll-down-btn.show {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-    pointer-events: auto;
-}
-
-#scroll-down-btn span {
-    position: relative;
-    font-size: 22px;
-}
-
-#clear-btn,
-#send-btn,
-#scroll-down-btn {
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    transform: translateY(-50%) scale(1); 
-}
-
-#clear-btn:active,
-#send-btn:active,
-#scroll-down-btn:active {
-    transform: translateY(-50%) scale(0.80); 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-}
-
-#scroll-down-btn {
-    transform: translateX(-50%) scale(0.5); 
-}
-
-#scroll-down-btn:active {
-    transform: translateX(-50%) scale(0.80);
-}
-
-#clear-btn:not(.disabled),
-#send-btn:not(.disabled),
-#scroll-down-btn {
-    box-shadow:
-        0 6px 12px rgba(255, 102, 0, 0.25),
-        0 12px 26px rgba(255, 102, 0, 0.20),
-        0 4px 10px rgba(255, 102, 0, 0.35) !important;
-}
-
-#clear-btn:hover,
-#send-btn:hover,
-#scroll-down-btn:hover {
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.30),
-        0 14px 28px rgba(0, 0, 0, 0.25),
-        0 2px 6px rgba(255, 102, 0, 0.45) !important;
-}
-
-.input-div {
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.12),
-        0 10px 20px rgba(0, 0, 0, 0.10) !important;
-}
-
-.input-div:has(#user-input:focus) {
-    box-shadow:
-        0 6px 12px rgba(255, 102, 0, 0.25),
-        0 12px 22px rgba(255, 102, 0, 0.18) !important;
-}
-
-.bot-message .content {
-    box-shadow:
-        0 6px 14px rgba(0, 0, 0, 0.18),
-        0 12px 26px rgba(0, 0, 0, 0.13) !important;
-}
-
-.user-message .content {
-    box-shadow:
-        0 6px 14px rgba(255, 102, 0, 0.35),
-        0 12px 26px rgba(255, 102, 0, 0.28) !important;
-}
-
-.source-block {
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    margin-top: 8px !important;
-}
-
-.source-block .sf-title,
-.source-block .sf-row,
-.source-block .sf-text,
-.source-block .sf-file,
-.source-block .sf-dot {
-    background: none !important;
-    box-shadow: none !important;
-}
-
-.file-container {
-    background: #ededed;
-    box-shadow:
-        0 6px 14px rgba(0, 0, 0, 0.18),
-        0 12px 26px rgba(0, 0, 0, 0.13) !important;
-    border-radius: 18px;
-}
-
-@media (max-width: 768px) {
-
-    main {
-        margin-top: 70px;
-        padding: 15px;
-        gap: 15px;
-        margin-bottom: 110px;
+const chatBox = document.getElementById('chat-box');
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+const clearBtn = document.getElementById('clear-btn');
+const loadingIndicator = document.getElementById('loading-indicator');
+const scrollBtn = document.getElementById("scroll-down-btn");
+const input = document.getElementById("user-input");
+const inputDiv = document.querySelector(".input-div");
+const footer = document.querySelector('footer');
+
+function addMessage(text, sender, isHtml = false) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+
+    const avatarDiv = document.createElement('div');
+    avatarDiv.classList.add('avatar');
+    const img = document.createElement('img');
+    img.src = sender === 'user'
+        ? "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
+        : "/static/assets/logo.png";
+    avatarDiv.appendChild(img);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.classList.add('content');
+
+    if (isHtml) {
+        contentDiv.innerHTML = linkify(text);
+    } else {
+        contentDiv.textContent = text;
     }
 
-    .avatar {
-        width: 38px;
-        height: 38px;
+    if (sender === 'user') {
+        msgDiv.appendChild(contentDiv);
+        msgDiv.appendChild(avatarDiv);
+    } else {
+        msgDiv.appendChild(avatarDiv);
+        msgDiv.appendChild(contentDiv);
     }
 
-    .content,
-    .file-container {
-        max-width: 100%;
-        padding: 12px 16px;
-        border-radius: 16px;
-        font-size: 15px;
-        word-break: break-word;
-    }
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    updateScrollButton();
+}
 
-    #clear-btn,
-    #send-btn {
-        height: 36px;
-        width: 36px;
-        font-size: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+async function sendMessage() {
+    const text = userInput.innerText.trim();
+    if (!text) return;
 
-    .input-div {
-        padding-left: 60px;
-        padding-right: 60px;
-        border-radius: 16px;
-        min-height: 44px;
-    }
+    addMessage(text, 'user');
+    userInput.innerHTML = '';
+    userInput.style.height = 'auto';
 
-    #user-input {
-        padding: 16px 0;
-        font-size: 15px;
-        white-space: pre-wrap !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-    }
+    loadingIndicator.classList.remove('hidden');
+    updateSendButtonState();
+    chatBox.appendChild(loadingIndicator);
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 14px 20px;
-        background: #fff;
-        box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
-        z-index: 999;
+    try {
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        });
+
+        const data = await response.json();
+        let cleanText = data.response;
+
+        cleanText = cleanText.replace(
+            /(^|\n)1\. ([^\n]+)(\n(?!2\. ).+)?(?=\n\n|$)/g,
+            (match, start, item, extra) => {
+                if (!/^\s*2\./m.test(extra || "")) {
+                    return `${start}${item}${extra || ""}`;
+                }
+                return match;
+            }
+        );
+
+        loadingIndicator.classList.add('hidden');
+        updateSendButtonState();
+
+        if (cleanText.length > 0) {
+            addMessage(cleanText, 'bot', true);
+        }
+
+    } catch (error) {
+        loadingIndicator.classList.add('hidden');
+        addMessage("Помилка з'єднання. Перевірте консоль.", 'bot');
+        console.error(error);
     }
 }
 
-@media (max-width: 480px) {
+sendBtn.addEventListener('click', sendMessage);
 
-    #clear-btn span,
-    #send-btn span {
-        left: 0 !important;
-        top: 0 !important;
+document.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && !sendBtn.classList.contains("disabled")) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
+
+clearBtn.addEventListener('click', () => location.reload());
+
+userInput.addEventListener("input", () => {
+    if (userInput.innerText.trim() === "") {
+        userInput.innerHTML = "";
+    }
+});
+
+userInput.addEventListener('paste', (e) => {
+    e.preventDefault();
+
+    const text = (e.clipboardData || window.clipboardData).getData('text/plain') || '';
+
+    if (document.queryCommandSupported('insertText')) {
+        document.execCommand('insertText', false, text);
+    } else {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+        const range = selection.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(document.createTextNode(text));
+        range.collapse(false);
+    }
+});
+
+document.addEventListener("mousedown", (e) => {
+    const isChatText = e.target.closest(".message .content");
+    const isInput = e.target.closest("#user-input");
+
+    if (!isChatText && !isInput) {
+        window.getSelection()?.removeAllRanges();
     }
 
-    header {
-        padding: 10px 14px;
-    }
+});
 
-    .logo {
-        height: 32px;
-        margin-right: 10px;
-    }
+const scrollDownBtn = document.getElementById("scroll-down-btn");
 
-    .brand-name {
-        font-size: 20px;
-    }
+function updateScrollButton() {
+    const nearBottom =
+        chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 140;
 
-    main {
-        padding: 12px;
-        margin: 0 !important;
-        gap: 12px;
-        max-width: 100%;
-        padding-bottom: 90px !important;
-    }
-
-    .avatar {
-        width: 32px;
-        height: 32px;
-    }
-
-    .content {
-        max-width: 100%;
-        font-size: 14px;
-        padding: 10px 14px;
-        border-radius: 14px;
-        word-break: break-word;
-        white-space: pre-wrap;
-    }
-
-    .file-container {
-        max-width: 100%;
-        padding: 12px 14px;
-        border-radius: 14px;
-        font-size: 14px;
-        word-break: break-word;
-        white-space: pre-wrap;
-    }
-
-    .file-download-row {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        flex-wrap: nowrap;
-        white-space: nowrap;
-    }
-
-    .file-download {
-        white-space: normal;
-        overflow-wrap: anywhere;
-        font-size: 14px;
-    }
-
-    .source-block {
-        font-size: 13px;
-        margin-top: 10px;
-        border-top: 1px solid #ddd;
-        padding-top: 8px;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .sf-title {
-        font-size: 13px;
-        margin-bottom: 2px;
-        display: flex;
-        align-items: center;
-        gap: 2px !important;
-    }
-
-    .sf-row {
-        display: flex;
-        align-items: flex-start;
-        gap: 6px !important;
-        white-space: normal;
-    }
-
-    .sf-dot {
-        font-size: 13px;
-        color: #555;
-        flex-shrink: 0;
-        line-height: 1.2;
-        margin-right: 2px !important;
-    }
-
-    .sf-text {
-        font-size: 13px !important;
-        line-height: 1.3;
-        overflow-wrap: anywhere;
-    }
-
-    .sf-file {
-        font-size: 13px !important;
-        color: var(--primary);
-        font-weight: 600;
-        text-decoration: none;
-        line-height: 1.3;
-        overflow-wrap: anywhere;
-    }
-
-    #clear-btn,
-    #send-btn {
-        height: 32px;
-        width: 32px;
-        font-size: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .input-div {
-        padding-left: 48px;
-        padding-right: 48px;
-        border-radius: 16px;
-        min-height: 44px;
-    }
-
-    #user-input {
-        padding: 12px 0;
-        font-size: 14px;
-        white-space: pre-wrap !important;
-        overflow-wrap: break-word !important;
-        word-break: break-word !important;
-        max-height: 140px;
-    }
-
-    .loading-text {
-        font-size: 14px;
-        margin-left: 10px;
-    }
-
-    .loading-spinner {
-        width: 16px;
-        height: 16px;
-        border-width: 2px;
-    }
-
-    .loading-avatar {
-        width: 28px;
-        height: 28px;
-    }
-
-    #scroll-down-btn {
-        height: 30px;
-        width: 30px;
-    }
-
-    #scroll-down-btn span {
-        font-size: 27px;
-        top: -2px;
-        position: relative;
-    }
-
-    footer {
-        padding: 12px 14px;
-        box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
+    if (nearBottom) {
+        scrollDownBtn.classList.remove("show");
+    } else {
+        scrollDownBtn.classList.add("show");
     }
 }
+
+chatBox.addEventListener("scroll", updateScrollButton);
+
+scrollDownBtn.addEventListener("click", () => {
+    chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+});
+
+function updateScrollBtnPosition() {
+    const footerHeight = footer.offsetHeight;
+
+    let offset = 20;
+
+    if (window.innerWidth < 480) {
+        offset = 15;
+    } else if (window.innerWidth < 768) {
+        offset = 20;
+    }
+
+    scrollBtn.style.bottom = (footerHeight + offset) + "px";
+}
+
+window.addEventListener("resize", updateScrollBtnPosition);
+userInput.addEventListener("input", updateScrollBtnPosition);
+chatBox.addEventListener("scroll", updateScrollBtnPosition);
+updateScrollBtnPosition();
+
+function updateClearButtonState() {
+    const clearBtn = document.getElementById("clear-btn");
+
+    const messages = [...document.querySelectorAll(".message")]
+        .filter(m => !m.classList.contains("system-message"));
+
+    clearBtn.classList.toggle("disabled", messages.length === 0);
+}
+
+document.getElementById("clear-btn").addEventListener("click", () => {
+    const main = document.querySelector("main");
+    const systemMessage = document.querySelector(".system-message");
+    main.innerHTML = "";
+    if (systemMessage) main.appendChild(systemMessage);
+    updateClearButtonState();
+});
+
+const observer = new MutationObserver(updateClearButtonState);
+observer.observe(document.querySelector("main"), { childList: true });
+updateClearButtonState();
+
+function updateSendButtonState() {
+    const textEmpty = userInput.innerText.trim().length === 0;
+    const isLoading = !loadingIndicator.classList.contains("hidden");
+
+    sendBtn.classList.toggle("disabled", textEmpty || isLoading);
+}
+
+userInput.addEventListener("input", updateSendButtonState);
+const observerSend = new MutationObserver(updateSendButtonState);
+observerSend.observe(loadingIndicator, { attributes: true });
+updateSendButtonState();
+
+function linkify(text) {
+    const urlRegex = /(https?:\/\/[^\s<]+)/g;
+    return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+}
+
+userInput.spellcheck = false;
