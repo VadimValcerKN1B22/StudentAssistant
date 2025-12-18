@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="frontend/static/assets/logo.png" alt="StudentAssistant Logo" width="120"/>
-
 # 🎓 StudentAssistant
 
 ### Розробка інтелектуального помічника студента для навігації  
