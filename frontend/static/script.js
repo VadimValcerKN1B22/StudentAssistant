@@ -8,8 +8,6 @@ const input = document.getElementById("user-input");
 const inputDiv = document.querySelector(".input-div");
 const footer = document.querySelector('footer');
 
-let history = [];
-
 function addMessage(text, sender, isHtml = false) {
     const msgDiv = document.createElement('div');
     msgDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
@@ -26,7 +24,7 @@ function addMessage(text, sender, isHtml = false) {
     contentDiv.classList.add('content');
 
     if (isHtml) {
-        contentDiv.innerHTML = text;
+        contentDiv.innerHTML = linkify(text);
     } else {
         contentDiv.textContent = text;
     }
@@ -42,108 +40,6 @@ function addMessage(text, sender, isHtml = false) {
     chatBox.appendChild(msgDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
     updateScrollButton();
-}
-
-function addFilesMessage(files) {
-    const msgDiv = document.createElement('div');
-    msgDiv.classList.add('message', 'bot-message');
-
-    const avatarDiv = document.createElement('div');
-    avatarDiv.classList.add('avatar');
-    const img = document.createElement('img');
-    img.src = "/static/assets/logo.png";
-    avatarDiv.appendChild(img);
-
-    const fileDiv = document.createElement('div');
-    fileDiv.classList.add('file-container');
-
-    const title = files.length === 1
-        ? "Ось потрібний вам файл:"
-        : "Ось потрібні вам файли:";
-
-    let html = `<div class="file-label">${title}</div>`;
-
-    files.forEach(f => {
-    html += `
-        <div class="file-download-row">
-            <span class="file-emoji">➡️</span>
-            <a href="/download/${f}" class="file-download">
-                 ${f}
-            </a>
-        </div>
-    `;
-});
-
-    fileDiv.innerHTML = html;
-
-    msgDiv.appendChild(avatarDiv);
-    msgDiv.appendChild(fileDiv);
-
-    chatBox.appendChild(msgDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function formatPages(pagesArr) {
-    if (!pagesArr || pagesArr.length === 0) return "";
-    const unique = [...new Set(pagesArr)];
-    const label = unique.length > 1 ? "сторінки" : "сторінка";
-    return ` (${label} ${unique.join(", ")})`;
-}
-
-function appendSourcesAndFilesToLastBotMessage(sources, downloads) {
-    const lastContent = chatBox.querySelector('.bot-message:last-child .content');
-    if (!lastContent) return;
-
-    let block = document.createElement("div");
-    block.classList.add("source-block");
-
-    const titleSources = document.createElement("div");
-    titleSources.className = "sf-title";
-    titleSources.innerHTML = `📄 <b>Джерела:</b>`;
-    block.appendChild(titleSources);
-
-    sources.forEach(s => {
-        const row = document.createElement("div");
-        row.className = "sf-row";
-
-        const dot = document.createElement("span");
-        dot.className = "sf-dot";
-        dot.textContent = "•";
-
-        const text = document.createElement("span");
-        text.className = "sf-text";
-        text.textContent = `${s.cleanName}${formatPages(s.pages)}`;
-
-        row.appendChild(dot);
-        row.appendChild(text);
-        block.appendChild(row);
-    });
-
-    const titleFiles = document.createElement("div");
-    titleFiles.className = "sf-title";
-    titleFiles.style.marginTop = "10px";
-    titleFiles.innerHTML = `⬇️ <b>Файли:</b>`;
-    block.appendChild(titleFiles);
-
-    downloads.forEach(f => {
-        const row = document.createElement("div");
-        row.className = "sf-row";
-
-        const dot = document.createElement("span");
-        dot.className = "sf-dot";
-        dot.textContent = "•";
-
-        const link = document.createElement("a");
-        link.className = "sf-file";
-        link.href = `/download/${f}`;
-        link.textContent = f;
-
-        row.appendChild(dot);
-        row.appendChild(link);
-        block.appendChild(row);
-    });
-
-    lastContent.appendChild(block);
 }
 
 async function sendMessage() {
@@ -163,57 +59,21 @@ async function sendMessage() {
         const response = await fetch('/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text, history: history })
+            body: JSON.stringify({ message: text })
         });
 
         const data = await response.json();
         let cleanText = data.response;
 
-cleanText = cleanText.replace(
-    /(^|\n)1\. ([^\n]+)(\n(?!2\. ).+)?(?=\n\n|$)/g,
-    (match, start, item, extra) => {
-        if (!/^\s*2\./m.test(extra || "")) {
-            return `${start}${item}${extra || ""}`;
-        }
-        return match;
-    }
-);
-        const downloadMatches = [...cleanText.matchAll(/\[\[DOWNLOAD:\s*(.*?)\]\]/g)];
-        let downloads = downloadMatches.map(m => m[1].trim());
-        downloads = [...new Set(downloads)];
-
-        const sourceMatches = [...cleanText.matchAll(/\[\[SOURCE:\s*(.*?)\]\]/g)];
-        const sourceMap = new Map();
-
-        sourceMatches.forEach(match => {
-            let part = match[1].trim();
-            let [file, pagesRaw] = part.split('|').map(s => s.trim());
-            const cleanName = file.replace(/\.pdf$/i, '');
-
-            let nums = [];
-            if (pagesRaw) {
-                const found = pagesRaw.match(/\d+/g);
-                if (found) nums = found.map(x => x.trim());
+        cleanText = cleanText.replace(
+            /(^|\n)1\. ([^\n]+)(\n(?!2\. ).+)?(?=\n\n|$)/g,
+            (match, start, item, extra) => {
+                if (!/^\s*2\./m.test(extra || "")) {
+                    return `${start}${item}${extra || ""}`;
+                }
+                return match;
             }
-
-            if (!sourceMap.has(file)) {
-                sourceMap.set(file, {
-                    file,
-                    cleanName,
-                    pages: nums
-                });
-            } else {
-                const existing = sourceMap.get(file);
-                existing.pages = [...new Set([...existing.pages, ...nums])];
-            }
-        });
-
-        const sources = Array.from(sourceMap.values());
-
-        cleanText = cleanText
-    .replace(/\[\[DOWNLOAD:.*?\]\]/g, '')
-    .replace(/\[\[SOURCE:.*?\]\]/g, '')
-    .trim();
+        );
 
         loadingIndicator.classList.add('hidden');
         updateSendButtonState();
@@ -221,20 +81,6 @@ cleanText = cleanText.replace(
         if (cleanText.length > 0) {
             addMessage(cleanText, 'bot', true);
         }
-
-        if (sources.length > 0) {
-            if (downloads.length === 0) {
-                downloads = sources.map(s => s.file);
-            }
-            downloads = [...new Set(downloads)];
-
-            appendSourcesAndFilesToLastBotMessage(sources, downloads);
-        } else if (cleanText.length === 0 && downloads.length > 0) {
-            addFilesMessage(downloads);
-        }
-
-        history.push({ sender: 'user', text });
-        history.push({ sender: 'bot', text: data.response });
 
     } catch (error) {
         loadingIndicator.classList.add('hidden');
@@ -307,21 +153,21 @@ scrollDownBtn.addEventListener("click", () => {
 });
 
 function updateScrollBtnPosition() {
-    const footerHeight = footer.offsetHeight;  
+    const footerHeight = footer.offsetHeight;
 
-    let offset = 20; 
+    let offset = 20;
 
     if (window.innerWidth < 480) {
-        offset = 15;       
+        offset = 15;
     } else if (window.innerWidth < 768) {
-        offset = 20;       
+        offset = 20;
     }
-    
+
     scrollBtn.style.bottom = (footerHeight + offset) + "px";
 }
 
 window.addEventListener("resize", updateScrollBtnPosition);
-userInput.addEventListener("input", updateScrollBtnPosition); 
+userInput.addEventListener("input", updateScrollBtnPosition);
 chatBox.addEventListener("scroll", updateScrollBtnPosition);
 updateScrollBtnPosition();
 
@@ -357,3 +203,10 @@ userInput.addEventListener("input", updateSendButtonState);
 const observerSend = new MutationObserver(updateSendButtonState);
 observerSend.observe(loadingIndicator, { attributes: true });
 updateSendButtonState();
+
+function linkify(text) {
+    const urlRegex = /(https?:\/\/[^\s<]+)/g;
+    return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+}
+
+userInput.spellcheck = false;
